@@ -27,7 +27,12 @@
                             <th>Players</th>
                         </tr>
                     </table>
-                    <a class="button is-success" onclick="add()">Add player</a>
+                    <a class="button is-success add" onclick="add()">Add player</a>
+                    <a class="button is-danger modify" onclick="modify()">Modify</a>
+                    <a class="button is-link close" onclick="close()">Close</a>
+                    <a class="button is-link change hidden" onclick="change()">Change</a>
+                    <input type="number" id="exchange" class="input ex1 hidden"/>
+                    <a class="button is-danger cancel hidden" onclick="cancel()">Cancel</a>
                 </div>
                 <div class="schedulde">
 

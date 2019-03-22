@@ -77,3 +77,11 @@ body {
 .table.is-hoverable tbody tr:not(.is-selected):hover{
     background-color: greenyellow;
 }
+
+.hidden{
+    display: none;
+}
+
+.ex1{
+    max-width: 10%;
+}
