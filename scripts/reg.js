@@ -68,3 +68,24 @@ function cancel(){
     exchange.classList.add("hidden"); 
     cancel.classList.add("hidden");  
 }
+
+function lock(){
+    var add1=document.getElementsByClassName("add")[0];
+    var modify=document.getElementsByClassName("modify")[0];
+    var close=document.getElementsByClassName("close")[0];
+    var confirm=document.getElementsByClassName("confirm")[0];
+    var cancel2=document.getElementsByClassName("cancel2")[0];
+    add1.classList.add("hidden");
+    modify.classList.add("hidden");
+    close.classList.add("hidden");
+    confirm.classList.remove("hidden");
+    cancel2.classList.remove("hidden");
+}
+
+function cancel2(){
+    var confirm=document.getElementsByClassName("confirm")[0];
+    var cancel2=document.getElementsByClassName("cancel2")[0];
+    cancel();
+    confirm.classList.add("hidden");
+    cancel2.classList.add("hidden");
+}
