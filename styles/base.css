@@ -12,21 +12,21 @@ body {
     width:100%;
     height:50px;
     background-color: black;
-    font-size: 2.3rem;
+    font-size: 2rem;
 }
 
 .index-icon {
     text-decoration: none;
     background-color: #5a5a5a;
-    padding:8px;
+    padding:5px;
     color:white;
 }
 
 .container{
     width:100%;
-    margin:0 auto;
-    padding:0;
     height: 100%;
+    margin:0;
+    padding:0;
 }
 
 .container::after{
@@ -61,3 +61,19 @@ body {
     height:100%;
 }
 
+.content table{
+    margin:0;
+    width:33%;
+}
+
+.registration{
+    text-align: left;
+}
+
+.table{
+    background-color: #00d0ff;
+}
+
+.table.is-hoverable tbody tr:not(.is-selected):hover{
+    background-color: greenyellow;
+}

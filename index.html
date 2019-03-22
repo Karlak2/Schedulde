@@ -3,7 +3,9 @@
     <head>
         <title>Schedulde of play</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
         <link rel="stylesheet" href="styles/base.css">
+        <script src="scripts/reg.js" defer></script>
     </head>
     <body>
         <div class="header">
@@ -12,14 +14,20 @@
         <div class="container">
             <div class="menu">
                 <ul>
-                    <li><a href="#">Registration</a></li>
+                    <li><a onclick="reg()">Registration</a></li>
                     <li><a href="#">Schedulde</a></li>
                     <li><a href="#">Results</a></li>
                 </ul>
             </div>
             <div class="content">
                 <div class="registration">
-                    pesze
+                    <table class="table is-hoverable is-bordered">
+                        <tr>
+                            <th>Number</th>
+                            <th>Players</th>
+                        </tr>
+                    </table>
+                    <a class="button is-success" onclick="add()">Add player</a>
                 </div>
                 <div class="schedulde">
 
