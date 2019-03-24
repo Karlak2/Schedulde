@@ -1,6 +1,3 @@
-var x;
-
-
 function add(){
     var table=document.getElementsByClassName("table")[0];
     var row=table.insertRow(-1);
@@ -10,7 +7,7 @@ function add(){
     cell1.innerHTML=x;
     var input=document.createElement("input");
     input.setAttribute("type","text");
-    input.setAttribute("placeholder","Team"+x);
+    input.setAttribute("placeholder","team"+x);
     input.setAttribute("class","input");
     input.setAttribute("id","team"+x);
     cell2.appendChild(input);

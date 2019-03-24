@@ -86,3 +86,11 @@ body {
 .ex1{
     max-width: 10%;
 }
+
+.schedbutton {
+    margin-top:10px;
+}
+
+.selected{
+    background-color: #08b7b7;
+}
