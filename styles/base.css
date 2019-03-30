@@ -62,7 +62,7 @@ body {
     height:740px;
 }
 
-.content table{
+.registration table{
     margin:0;
     width:40%;
 }
@@ -71,7 +71,7 @@ body {
     text-align: left;
 }
 
-.table{
+.entry{
     background-color: #00d0ff;
 }
 
@@ -93,4 +93,16 @@ body {
 
 .selected{
     background-color: #08b7b7;
+}
+
+.matchlist{
+    margin-top:100px;
+}
+
+.round1 table{
+    width: 80%;
+}    
+.round table tr {
+    background-color: blue;
+    color:white;
 }

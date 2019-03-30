@@ -25,7 +25,7 @@ function schedulde(items){
     addColor(items.schedback);
 }
 
-function results(x){
+function results(items){
     hideElement(items.scheditem);
     showElement(items.resitem);
     hideElement(items.regitem);   
