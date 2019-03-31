@@ -59,7 +59,7 @@ body {
     width:auto;
     margin-left:350px;
     padding:20px;
-    height:740px;
+    height:100%;
 }
 
 .registration table{
@@ -99,10 +99,18 @@ body {
     margin-top:100px;
 }
 
-.round1 table{
+.tabsched table{
     width: 80%;
 }    
-.round table tr {
-    background-color: blue;
+.tabcolor{
+    background-color: #01d3e6;
     color:white;
+}
+
+.ered td{
+    text-align: center;
+}
+
+.ered .input{
+    width:25%;
 }
