@@ -1,41 +1,154 @@
-function champtype(){
-    var type=document.getElementById("champ-type").value;
-    if(type="Round robin"){
-        robin();
-    } else if(type="Partial round robin") {
-        partial();
-    } else {
-        maintable();
-    }
-}
-
-function robin(){
+var butt=document.getElementsByClassName("confirm")[0];
+butt.addEventListener("click",function(event){
+    event.preventDefault;
     var table=document.getElementsByClassName("table")[0];
     var nteam=table.rows.length;
-    var odd=false;
-    var even=false;
     nteam=nteam-1;
-    if(nteam % 2 == 0){
-        even=true;
+    var group=false;
+    var maintable=false;
+    var is3=false;
+    var is4=false;
+    var is5=false;
+    var is6=false;
+    var is7=false;
+    if(nteam % 3  === 0){
+        group=true;
+        is3=true;
+        var grouptag=3;
     }
-    if(nteam % 2 == 1){
-        odd=true;
+    if(nteam % 4 ===0){
+        group=true;
+        is4=true;
+        var grouptag=4;
     }
-    var nteam2=nteam-1;
-    var ind = [];
-    for(i=0;i<=nteam2-1;i++){
-        ind[i]= [];
-        for(j=0;j<=nteam2-1;j++){
-            ind[i][j]=i+j+1;
-            if(ind[i][j] > nteam2){
-                ind[i][j]=ind[i][j]-nteam2;
+    if(nteam % 5 ===0){
+        group=true;
+        is5=true;
+        var grouptag=5;
+    }
+    if(nteam % 6 ===0){
+        group=true;
+        is6=true;
+        var grouptag=6;
+    }
+    if(nteam % 7 ===0){
+        group=true;
+        is7=true;
+        var grouptag=7;
+    }
+    for(i=1;i<=10;i++){
+        var x=Math.pow(2,i);
+        if(nteam===x){
+            maintable=true;
+        }
+    }
+    var playerNum = document.getElementById("champ-type");
+    var text1="Round robin";
+    var text2="Partial round robin";
+    var text4="Main table";
+    addOption(playerNum,text1);
+    addOption(playerNum,text2);
+    if(group){
+        if(is3){
+            var text3="Group round ";
+            var z=nteam/3;
+            if(z>1){
+                text3=text3+z+" x 3";
+                addOption(playerNum,text3);
+            }
+        }
+        if(is4){
+            var text3="Group round ";
+            var z=nteam/4;
+            if(z>1){
+                text3=text3+z+" x 4";
+                addOption(playerNum,text3);
+            }
+        }
+        if(is5){
+            var text3="Group round ";
+            var z=nteam/5;
+            if(z>1){
+                text3=text3+z+" x 5";
+                addOption(playerNum,text3);
+            }
+        }
+        if(is6){
+            var text3="Group round ";
+            var z=nteam/6;
+            if(z>1){
+                text3=text3+z+" x 6";
+                addOption(playerNum,text3);
+            }
+        }
+        if(is7){
+            var text3="Group round ";
+            var z=nteam/7;
+            if(z>1){
+                text3=text3+z+" x 7";
+                addOption(playerNum,text3);
             }
         }
     }
+    if(maintable){
+        addOption(playerNum,text4);
+    }
+});
+
+function addOption(playerNum,ntext){
+    var option1=document.createElement("option");
+    var text=document.createTextNode(ntext);
+    option1.appendChild(text);
+    playerNum.add(option1);
+}
+
+
+function champtype(){
+    var type=document.getElementById("champ-type").value;
+    var table=document.getElementsByClassName("table")[0];
+    var nteam=table.rows.length;
+    nteam=nteam-1;
+    if(type=="Round robin"){
+        robin(nteam);
+    } else if(type=="Group round robin") {
+        group(nteam,ngroup);
+    } else {
+        maintable();
+    }
+    var sched=document.getElementsByClassName("schedbutton")[0];
+    sched.classList.add("hidden");
+}
+
+
+function group(nteam,ngroup){
+
+}
+
+
+function robin(nteam){
+    var odd=false;
+    var even=false;
+    if(nteam % 2 == 0){
+        even=true;
+    }
+    else {
+        odd=true;
+    }
+    var nteam2=nteam-1;
     var ntlist = [];
     var ntlist2= [];
     var nmatch=nteam*(nteam-1)/2;
     if(even){
+        var ind = [];
+        for(i=0;i<=nteam2-1;i++){
+            ind[i]= [];
+            for(j=0;j<=nteam2-1;j++){
+                ind[i][j]=i+j+1;
+                if(ind[i][j] > nteam2){
+                    ind[i][j]=ind[i][j]-nteam2;
+                }
+            }
+        }
         var nt2=0;
         for(i=1;i<=nteam2;i++){
             var nt=0;
@@ -85,8 +198,97 @@ function robin(){
         for(y=1;y<=nteam2;y++){
             createRound(matchlist,y,nj,nteam/2);
         }
+        var nk=1;
+        for(i=0;i<=nmatch-1;i++){
+            for(j=0;j<=1;j++){
+                var x = ntlist2[i][j];             
+                var place ="team"+x;
+                var team = document.getElementById(place).value;
+                var partof="matchteam"+nk;
+                document.getElementById(partof).innerHTML=team+"  ("+x+")";
+                nk=nk+1;
+            }
+        }
     } 
+    if(odd){
+        var ind = [];
+        for(i=0;i<=nteam2;i++){
+            ind[i]= [];
+            for(j=0;j<=nteam2;j++){
+                ind[i][j]=i+j+1;
+                if(ind[i][j] > nteam){
+                    ind[i][j]=ind[i][j]-nteam;
+                }
+            }
+        }
+        var nt2=0;
+        for(i=1;i<=nteam;i++){
+            var nt=0;
+            for(j=0;j<=nteam2;j++){
+                for(k=0;k<=nteam2;k++){
+                    if(ind[j][k] === i){
+                        var x=(i-1)*(nteam-1)+nt;
+                        if(j === k){
+                            ntlist[x] = [];
+                            ntlist[x][0]= (j+1);
+                            ntlist[x][1] = nteam+1;
+                            nt=nt+1;
+                        } else {
+                            ntlist[x] = [];
+                            ntlist[x][0]= (j+1);
+                            ntlist[x][1]= (k+1);
+                            nt=nt+1;                            
+                        }
+                    }
+                }
+            }            
+        }
+        ntlist[0][0]=0;
+        ntlist[0][1]=0;
+        for (l=1;l<=x;l++){
+            if((ntlist[l][0]===(nteam+1)) || (ntlist[l][1]===(nteam+1))){
+                ntlist[l][0]=0;
+                ntlist[l][1]=0;
+            }
+            var temp=ntlist[l][0];
+            ntlist[l][0]=ntlist[l][1];
+            ntlist[l][1]=temp;
+            for(m=0;m<=(l-1);m++){
+                if((ntlist[l][0]===ntlist[m][0]) & (ntlist[l][1]===ntlist[m][1])){
+                    ntlist[l][0]=0;
+                    ntlist[l][1]=0;
+                }
+            }
+            var temp=ntlist[l][0];
+            ntlist[l][0]=ntlist[l][1];
+            ntlist[l][1]=temp;
+        }
+        for(l=0;l<=x;l++){
+            if(ntlist[l][0]!=0){
+                ntlist2[nt2]=[];
+                ntlist2[nt2][0]=ntlist[l][0];
+                ntlist2[nt2][1]=ntlist[l][1];
+                nt2=nt2+1;
+            }
+        }
+        var matchlist=document.getElementsByClassName("matchlist")[0];
+        var nj=1;
+        for(y=1;y<=nteam;y++){
+            createRound(matchlist,y,nj,(nteam-1)/2);
+        }
+        var nk=1;
+        for(i=0;i<=nmatch-1;i++){
+            for(j=0;j<=1;j++){
+                var x= ntlist2[i][j];             
+                var place="team"+x;
+                var team=document.getElementById(place).value;
+                var partof="matchteam"+nk;
+                document.getElementById(partof).innerHTML=team+"  ("+x+")";
+                nk=nk+1;
+            }
+        }
 
+    }
 }
 
 
@@ -112,25 +314,27 @@ function createRound(matchId,y,j,nakt){
     var headnum="tab-head"+y;
     var nextTd=document.getElementsByClassName(headnum)[0];
     var headTd=document.createElement("td");
-    headTd.setAttribute("colspan","5");
+    headTd.setAttribute("colspan","6");
     var t=document.createTextNode("Round"+y);
     headTd.appendChild(t);
     nextTd.appendChild(headTd);
     for(i=1;i<=nakt;i++){
-        addRowx(tabx,j,y,nakt);
+        addRowx(tabx,j,y,nakt,i);
         j=j+2;
     }
 
 }
 
-function addRowx(tabx,j,y,nakt){
+function addRowx(tabx,j,y,nakt,i){
     var row=tabx.insertRow(-1);
-    row.setAttribute("class","ered");
+    var rowId=(y-1)*nakt+i;
+    row.setAttribute("class","ered match"+rowId);
     var cell1=row.insertCell(0);
     var cell2=row.insertCell(1);
     var cell3=row.insertCell(2);
     var cell4=row.insertCell(3);
     var cell5=row.insertCell(4);
+    var cell6=row.insertCell(5);
     var t1=document.createElement("span");
     var l=(y-1)*nakt*2+j
     t1.setAttribute("id","matchteam"+l);
@@ -151,6 +355,12 @@ function addRowx(tabx,j,y,nakt){
     var t2=document.createElement("span");
     t2.setAttribute("id","matchteam"+k);
     cell5.appendChild(t2);
+    var matchButton=document.createElement("button");
+    var arrow=document.createTextNode(">>");
+    matchButton.setAttribute("id","matchButton"+rowId);
+    matchButton.setAttribute("class","matchButton");
+    matchButton.appendChild(arrow);
+    cell6.appendChild(matchButton);
     return;
 }
 

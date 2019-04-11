@@ -4,8 +4,10 @@ var items={
     resitem:document.getElementsByClassName("results")[0],
     regback:document.getElementsByClassName("reg-item")[0],
     schedback:document.getElementsByClassName("sched-item")[0],
-    resback:document.getElementsByClassName("res-item")[0]
+    resback:document.getElementsByClassName("res-item")[0],
+    rounds:document.getElementById("player-num"),
 };
+
 
 function reg(items){
     hideElement(items.scheditem);
@@ -32,6 +34,10 @@ function results(items){
     removeColor(items.regback);
     addColor(items.resback);
     removeColor(items.schedback);
+}
+
+function closeReg(){
+    schedulde(items);
 }
 
 function hideElement(thing){
@@ -69,3 +75,4 @@ function removeClass (element, classToRemove) {
 	}
     element.className = classList.join(' ');
 }
+

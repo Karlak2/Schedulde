@@ -36,26 +36,33 @@
                     <input type="number" id="exchange" class="input ex1 hidden"/>
                     <a class="button is-danger cancel hidden" onclick="cancel()">Cancel</a>
                     <a class="button is-danger cancel2 hidden" onclick="cancel2()">Cancel</a>
-                    <a class="button is-success confirm hidden" onclick="confirm()">Please confirm</a>
+                    <a class="button is-success confirm hidden" onclick="closeReg()">Please confirm</a>
                 </div>
                 <div class="schedulde hidden">
                     <div>
                         <div class="select is-info">
                             <select id="champ-type">
-                                <option>Select</option>
-                                <option>Round robin</option>
-                                <option>Partial round robin</option>
-                                <option>Main table</option>
+                                <option>Select option</option>
                             </select>
+                        </div>
                         <a class="schedbutton button is-info" style="
                         margin-top: 10px;" onclick="champtype()">Confirm</a>
-                        </div>
                     </div>
                     <div class="matchlist">
                     </div>
                 </div>
                 <div class="results hidden">
-
+                    <div class="result">
+                        <table class="table is-striped">
+                            <tr class="tablehead">
+                                <td>Team number</td>
+                                <td>W</td>
+                                <td>L</td>
+                                <td>D</td>
+                                <td>DIF</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

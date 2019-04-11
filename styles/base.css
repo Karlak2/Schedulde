@@ -4,8 +4,9 @@
     box-sizing: border-box;
 }
 
-body {
+html{
     background-color: #9acd324d;
+    height:100%;
 }
 
 .header {
@@ -101,6 +102,7 @@ body {
 
 .tabsched table{
     width: 80%;
+    margin-top:10px;
 }    
 .tabcolor{
     background-color: #01d3e6;
@@ -113,4 +115,25 @@ body {
 
 .ered .input{
     width:25%;
+}
+
+.right{
+    text-align: right;
+}
+
+.left{
+    text-align: left;
+}
+
+.matchButton{
+    background-color: chartreuse;
+    color: blue;
+    width:33px;
+    height:23px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.result{
+    margin-top: 50px;
 }
