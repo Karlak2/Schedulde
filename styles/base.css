@@ -109,6 +109,11 @@ html{
     color:white;
 }
 
+.tabcolor2{
+    background-color: #0c2022;
+    color:white;
+}
+
 .ered td{
     text-align: center;
 }
@@ -136,4 +141,8 @@ html{
 
 .result{
     margin-top: 50px;
+}
+
+.resgroup{
+    margin-top:10px;
 }
