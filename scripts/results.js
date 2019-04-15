@@ -37,6 +37,98 @@ sched.addEventListener("click",function(event){
    }
 })
 
+var matchlist=document.getElementsByClassName("matchlist")[0];
+matchlist.addEventListener("click",function(event){
+    event.preventDefault;
+    var table=document.getElementsByClassName("table")[0];
+    var nteam=table.rows.length;
+    nteam=nteam-1;
+    var nmatch=nteam*(nteam-1)/2;
+    if(event.target.nodeName == "BUTTON"){
+        var buttId=event.target.id;
+        for(y=1;y<=nmatch;y++){
+            var idOfButton="matchButton"+y;
+            if(idOfButton==buttId){
+                var locTeam1="matchteam"+((y-1)*2+1);
+                var locPoint1="teamid"+((y-1)*2+1);
+                var locTeam2="matchteam"+((y-1)*2+2);
+                var locPoint2="teamid"+((y-1)*2+2);
+                var team1=document.getElementById(locTeam1).innerText;
+                var team2=document.getElementById(locTeam2).innerText;
+                var point1=document.getElementById(locPoint1).value;
+                var point2=document.getElementById(locPoint2).value;
+                console.log(locTeam1,locPoint1,locTeam2,locPoint2);
+                if((point1==0) & (point2==0)){
+                    break;
+                } else if(point1!=0 || point2!=0){
+                    confirm("Are you shore?");
+                    if(confirm){
+                        document.getElementById(buttId).setAttribute("class","hidden");
+                    } else {
+                        break;
+                    }
+                }
+                for(k=1;k<=nteam;k++){
+                    var checkteam=document.getElementById("resTeam"+k).innerText;
+                    if(checkteam==team1){
+                        var team1Id=k;
+                    }
+                    if(checkteam==team2){
+                        var team2Id=k;
+                    }
+                }
+                if(point1 > point2){
+                    var nwin=document.getElementById("resWin"+team1Id).innerHTML;
+                    var pts1=document.getElementById("resPts"+team1Id).innerHTML
+                    pts1=Number(pts1);
+                    var pts2=document.getElementById("resPts"+team2Id).innerHTML;
+                    pts2=Number(pts2);
+                    nwin=Number(nwin);
+                    nwin=nwin+1;
+                    console.log(nwin);
+                    document.getElementById("resWin"+team1Id).innerHTML=nwin;
+                    var dif=point1-point2;
+                    pts1=pts1+dif;
+                    pts2=pts2-dif;
+                    document.getElementById("resPts"+team1Id).innerHTML=pts1;
+                    document.getElementById("resPts"+team2Id).innerHTML=pts2;
+
+                } else if(point1 < point2){
+                    var nwin=document.getElementById("resWin"+team2Id).innerHTML;
+                    var pts1=document.getElementById("resPts"+team1Id).innerHTML
+                    pts1=Number(pts1);
+                    var pts2=document.getElementById("resPts"+team2Id).innerHTML;
+                    pts2=Number(pts2);
+                    nwin=Number(nwin);
+                    nwin=nwin+1;
+                    console.log(nwin);
+                    document.getElementById("resWin"+team2Id).innerHTML=nwin;                   
+                    var dif=point2-point1;
+                    pts1=pts1-dif;
+                    pts2=pts2+dif;
+                    document.getElementById("resPts"+team1Id).innerHTML=pts1;
+                    document.getElementById("resPts"+team2Id).innerHTML=pts2;
+
+                } else {
+                    var ndraw1=document.getElementById("resDraw"+team1Id).innerHTML;
+                    ndraw1=Number(ndraw1);
+                    ndraw1=ndraw1+1;
+                    var ndraw2=document.getElementById("resDraw"+team2Id).innerHTML;
+                    ndraw2=Number(ndraw2);
+                    ndraw2=ndraw2+1;
+                    document.getElementById("resDraw"+team1Id).innerHTML=ndraw1;
+                    document.getElementById("resDraw"+team2Id).innerHTML=ndraw2;
+                    console.log(ndraw1,ndraw2);
+                }
+
+                console.log("success",team1,team2,point1,point2);
+
+                break;
+            }
+        }
+    }
+});
+
 
 
 function generateTables(nteam,numberTables,i){
@@ -110,22 +202,22 @@ function addRows(tabx,teams,j,i){
     var cell3=row.insertCell(3);
     var cell4=row.insertCell(4);
     var cell5=row.insertCell(5);
-    var t1=document.createElement("span");
+    var t1=document.createElement("p");
     t1.setAttribute("id","resNumber"+rowId);
     cell0.appendChild(t1);
-    var t2=document.createElement("span");
+    var t2=document.createElement("p");
     t2.setAttribute("id","resTeam"+rowId);
     cell1.appendChild(t2);
-    var t3=document.createElement("span");
+    var t3=document.createElement("p");
     t3.setAttribute("id","resWin"+rowId);
     cell2.appendChild(t3);
-    var t4=document.createElement("span");
+    var t4=document.createElement("p");
     t4.setAttribute("id","resLose"+rowId);
     cell3.appendChild(t4);
-    var t5=document.createElement("span");
+    var t5=document.createElement("p");
     t5.setAttribute("id","resDraw"+rowId);
     cell4.appendChild(t5);
-    var t6=document.createElement("span");
+    var t6=document.createElement("p");
     t6.setAttribute("id","resPts"+rowId);
     cell5.appendChild(t6);
 

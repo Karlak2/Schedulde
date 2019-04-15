@@ -162,7 +162,8 @@ sched.addEventListener("click",function(event){
             }
         }
     }
-
+    var sched=document.getElementsByClassName("schedbutton")[0];
+    sched.classList.add("hidden");
 });
 
 /*function champtype(){
@@ -381,7 +382,7 @@ function robin(nteam,nford,even,teamlist,nj,nk,roundz){
                     var place ="team"+x;
                     var team = document.getElementById(place).value;
                     var partof="matchteam"+nk;
-                    document.getElementById(partof).innerHTML=team+"  ("+x+")";
+                    document.getElementById(partof).innerHTML=team;
                     nk=nk+1;
                 }
             }
@@ -461,7 +462,7 @@ function robin(nteam,nford,even,teamlist,nj,nk,roundz){
                 var place="team"+x;
                 var team=document.getElementById(place).value;
                 var partof="matchteam"+nk;
-                document.getElementById(partof).innerHTML=team+"  ("+x+")";
+                document.getElementById(partof).innerHTML=team;
                 nk=nk+1;
             }
         }    
@@ -520,6 +521,7 @@ function addRowx(tabx,j,y,nakt,i){
     input1.setAttribute("class","input is-info");
     input1.setAttribute("type","number");
     input1.setAttribute("id","teamid"+l);
+    input1.setAttribute("value","0");
     cell2.appendChild(input1);
     var doubledot=document.createTextNode(":");
     cell3.appendChild(doubledot);
@@ -528,6 +530,7 @@ function addRowx(tabx,j,y,nakt,i){
     input2.setAttribute("type","number");
     var k=l+1;
     input2.setAttribute("id","teamid"+k);
+    input2.setAttribute("value","0");
     cell4.appendChild(input2);
     var t2=document.createElement("span");
     t2.setAttribute("id","matchteam"+k);
