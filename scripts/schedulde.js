@@ -112,107 +112,75 @@ function addOption(location,ntext){
 }
 var sched=document.getElementsByClassName("schedbutton")[0];
 sched.addEventListener("click",function(event){
-    event.preventDefault;
-    var type=document.getElementById("champ-type").value;
-    var table=document.getElementsByClassName("table")[0];
-    var nteam=table.rows.length;
-    nteam=nteam-1;
-    var even=false;
-    var teamlist= [];
-    if(nteam % 2 == 0){
-        even=true;
-    }
-    var nj=1;
-    var nk=1;
-    if(type=="Round robin"){
-        for(i=0;i<=nteam-1;i++){
-            teamlist.push(i+1);
-            var resNumber="resNumber"+(i+1);
-            var resTeam="resTeam"+(i+1);
-            var teamText="team"+(i+1);
-            var name=document.getElementById(teamText).value;
-            document.getElementById(resNumber).innerHTML=(i+1);
-            document.getElementById(resTeam).innerHTML=name;
+    confirm("Are you shore?");  
+    if(confirm){
+        event.preventDefault;
+        var type=document.getElementById("champ-type").value;
+        var table=document.getElementsByClassName("table")[0];
+        var nteam=table.rows.length;
+        nteam=nteam-1;
+        var even=false;
+        var teamlist= [];
+        if(nteam % 2 == 0){
+            even=true;
         }
-        var roundz=1;
-        if(even){
-            var nford=nteam-1;
-            robin(nteam,nford,even,teamlist,nj,nk,roundz);
+        var nj=1;
+        var nk=1;
+        if(type=="Round robin"){
+            for(i=0;i<=nteam-1;i++){
+                teamlist.push(i+1);
+                var resNumber="resNumber"+(i+1);
+                var resTeam="resTeam"+(i+1);
+                var teamText="team"+(i+1);
+                var name=document.getElementById(teamText).value;
+                document.getElementById(resNumber).innerHTML=(i+1);
+                document.getElementById(resTeam).innerHTML=name;
+            }
+            var roundz=1;
+            if(even){
+                var nford=nteam-1;
+                robin(nteam,nford,even,teamlist,nj,nk,roundz);
+            } else {
+                teamlist.push(100);
+                var nford=nteam;
+                robin(nteam,nford,even,teamlist,nj,nk,roundz);
+            }
+        } else if(type=="Partial round robin") {
+            var roundz=1;
+            for(i=0;i<=nteam-1;i++){
+                teamlist.push(i+1);
+                var resNumber="resNumber"+(i+1);
+                var resTeam="resTeam"+(i+1);
+                var teamText="team"+(i+1);
+                var name=document.getElementById(teamText).value;
+                document.getElementById(resNumber).innerHTML=(i+1);
+                document.getElementById(resTeam).innerHTML=name;
+            }
+            if(even){
+                var nford=nteam-1;
+            }
+            var nford=document.getElementById("round-num").value;
+            partial(nteam,nford,even,teamlist,nj,nk,roundz);
+        } else if(type=="Main table") {
+            maintable();
         } else {
-            teamlist.push(100);
-            var nford=nteam;
-            robin(nteam,nford,even,teamlist,nj,nk,roundz);
-        }
-    } else if(type=="Partial round robin") {
-        var nford=document.getElementById("round-num").value;
-        partial(nteam,nford,even);
-    } else if(type=="Main table") {
-        maintable();
-    } else {
-        for(j=3;j<=7;j++){
-            var text="Group round ";
-            var ngroup=nteam/i;
-            var text1 = text+ngroup+" x "+i;
-            if(type==text1){    
-                for(i=1;i<=nteam;i++){
-                teamlist.push(i);
-            }
-                group(nteam,ngroup,teamlist,even,nj,nk);
-                break;
+            for(j=3;j<=7;j++){
+                var text="Group round ";
+                var ngroup=nteam/i;
+                var text1 = text+ngroup+" x "+i;
+                if(type==text1){    
+                    for(i=1;i<=nteam;i++){
+                    teamlist.push(i);
+                }
+                    group(nteam,ngroup,teamlist,even,nj,nk);
+                    break;
+                }
             }
         }
+        var sched=document.getElementsByClassName("schedbutton")[0];
+        sched.classList.add("hidden");
     }
-    var sched=document.getElementsByClassName("schedbutton")[0];
-    sched.classList.add("hidden");
 });
-
-/*function champtype(){
-    var type=document.getElementById("champ-type").value;
-    var table=document.getElementsByClassName("table")[0];
-    var nteam=table.rows.length;
-    nteam=nteam-1;
-    var even=false;
-    var teamlist= [];
-    if(nteam % 2 == 0){
-        even=true;
-    }
-    var nj=1;
-    var nk=1;
-    if(type=="Round robin"){
-        for(i=0;i<=nteam-1;i++){
-            teamlist.push(i+1);
-        }
-        var roundz=1;
-        if(even){
-            var nford=nteam-1;
-            robin(nteam,nford,even,teamlist,nj,nk,roundz);
-        } else {
-            teamlist.push(100);
-            var nford=nteam;
-            robin(nteam,nford,even,teamlist,nj,nk,roundz);
-        }
-    } else if(type=="Partial round robin") {
-        var nford=document.getElementById("round-num").value;
-        partial(nteam,nford,even);
-    } else if(type=="Main table") {
-        maintable();
-    } else {
-        for(i=3;i<=7;i++){
-            var text="Group round ";
-            var ngroup=nteam/i;
-            var text1 = text+ngroup+" x "+i;
-            if(type==text1){    
-                for(i=1;i<=nteam;i++){
-                teamlist.push(i);
-            }
-                group(nteam,ngroup,teamlist,even,nj,nk);
-                break;
-            }
-        }
-    }
-/*    var sched=document.getElementsByClassName("schedbutton")[0];
-    sched.classList.add("hidden");
-}*/
 
 function maintable(){
 }
@@ -251,8 +219,15 @@ function group(nteam,ngroup,teamlist,even,nj,nk){
         for(j=1;j<=nteam2;j++){
             teams[j-1]=groups[i-1][j-1];
         }
+        var matchlist1=document.getElementsByClassName("matchlist")[0];
+        var grouphead= document.createElement("P");
+        grouphead.setAttribute("class","group-head")
+        var groupContent=document.createTextNode("Group"+i);
+        grouphead.appendChild(groupContent);
+        matchlist1.appendChild(grouphead);
         if(nteam2 % 2 == 0){
             even=true;
+
             robin(nteam2,nteam2-1,even,teams,nj,nk,roundz);
         } else {
             even=false;
@@ -264,44 +239,110 @@ function group(nteam,ngroup,teamlist,even,nj,nk){
     } while(i<ngroup+1);
 }
 
-function partial(nteam){
+function partial(nteam,nford,even,teamlist,nj,nk,roundz){
     var ntlist = [];
     var ntlist2= [];
     var nmatch=nteam*(nteam-1)/2;
     if(even){
         var ind = [];
-        for(i=0;i<=nford-1;i++){
+        for(i=0;i<=nteam-2;i++){
             ind[i]= [];
-            for(j=0;j<=nford-1;j++){
+            for(j=0;j<=nteam-2;j++){
                 ind[i][j]=i+j+1;
-                if(ind[i][j] > nford){
-                    ind[i][j]=ind[i][j]-nford;
+                if(ind[i][j] > nteam-1){
+                    ind[i][j]=ind[i][j]-nteam+1;
                 }
             }
         }
+        console.log(ind);
+        var ivec=[];
+        do {
+            var check=true;
+            for(i=1;i<=nford;i++){
+                ivec[i]=ik(nteam-1);
+            }
+            console.log(ivec);
+            for(j=2;j<=nford;j++){
+                for(k=1;k<=j-1;k++){
+                    if(ivec[j]==ivec[k]){
+                        check=false;
+                        console.log(check,ivec);
+                        break;
+                    }
+                }
+                if(check==false){
+                    console.log(check,ivec);
+                    break;
+                }
+            }
+            if(check){
+                console.log(check,ivec);
+                break;
+            }
+        } while (check==false);
+        console.log(ivec);
         var nt2=0;
         if(nford < nteam-1){
             for(i=1;i<=nford;i++){
                 var nt=0;
-                for(j=0;j<=nford-1;j++){
-                    for(k=0;k<=nford-1;k++){
+                for(j=0;j<=nteam-2;j++){
+                    for(k=0;k<=nteam-2;k++){
                         if(ind[j][k] === ivec[i]){
                             var x=(i-1)*(nteam-1)+nt;
                             if(j === k){
                                 ntlist[x] = [];
-                                ntlist[x][0]= (j+1);
-                                ntlist[x][1] = nteam;
+                                ntlist[x][0]= teamlist[j];
+                                ntlist[x][1] = teamlist[nteam-1];
                                 nt=nt+1;
                             } else {
                                 ntlist[x] = [];
-                                ntlist[x][0]= (j+1);
-                                ntlist[x][1]= (k+1);
+                                ntlist[x][0]= teamlist[j];
+                                ntlist[x][1]= teamlist[k];
                                 nt=nt+1;                            
                             }
                         }
                     }
                 }            
             }           
+        }
+        console.log(ntlist,x);
+        for (l=1;l<=x;l++){
+            var temp=ntlist[l][0];
+            ntlist[l][0]=ntlist[l][1];
+            ntlist[l][1]=temp;
+            for(m=0;m<=(l-1);m++){
+                if((ntlist[l][0]===ntlist[m][0]) & (ntlist[l][1]===ntlist[m][1])){
+                    ntlist[l][0]=0;
+                    ntlist[l][1]=0;
+                }
+            }
+            var temp=ntlist[l][0];
+            ntlist[l][0]=ntlist[l][1];
+            ntlist[l][1]=temp;
+        }
+        for(l=0;l<=x;l++){
+            if(ntlist[l][0]!=0){
+                ntlist2[nt2]=[];
+                ntlist2[nt2][0]=ntlist[l][0];
+                ntlist2[nt2][1]=ntlist[l][1];
+                nt2=nt2+1;
+            }
+        }
+        console.log(ntlist2);
+        var matchlist=document.getElementsByClassName("matchlist")[0];
+        for(y=1;y<=nford;y++){
+            var roundy=(roundz-1)*nford+y;
+            createRound(matchlist,roundy,nj,nteam/2);
+        }
+        for(i=0;i<=nmatch-1;i++){
+            for(j=0;j<=1;j++){
+                var x = ntlist2[i][j];             
+                var place ="team"+x;
+                var team = document.getElementById(place).value;
+                var partof="matchteam"+nk;
+                document.getElementById(partof).innerHTML=team;
+                nk=nk+1;
+            }
         }
     }
 }
@@ -330,7 +371,6 @@ function robin(nteam,nford,even,teamlist,nj,nk,roundz){
                 for(j=0;j<=nford-1;j++){
                     for(k=0;k<=nford-1;k++){
                         if(ind[j][k] === i){
-
                             var x=(i-1)*(nteam-1)+nt;
                             if(j === k){
                                 ntlist[x] = [];
@@ -522,6 +562,7 @@ function addRowx(tabx,j,y,nakt,i){
     input1.setAttribute("type","number");
     input1.setAttribute("id","teamid"+l);
     input1.setAttribute("value","0");
+    input1.setAttribute("min","0");
     cell2.appendChild(input1);
     var doubledot=document.createTextNode(":");
     cell3.appendChild(doubledot);
@@ -531,6 +572,7 @@ function addRowx(tabx,j,y,nakt,i){
     var k=l+1;
     input2.setAttribute("id","teamid"+k);
     input2.setAttribute("value","0");
+    input2.setAttribute("min","0");
     cell4.appendChild(input2);
     var t2=document.createElement("span");
     t2.setAttribute("id","matchteam"+k);
@@ -548,7 +590,8 @@ function ik(ndata){
     var x=Math.random();
     for(var i=1;i<=ndata;i++){
         if((x>(i-1)/ndata) & (x<=i/ndata)){
-            return i;
+           var ij=i;
+           return ij;
         }
     }
 }

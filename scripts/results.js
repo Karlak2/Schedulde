@@ -57,16 +57,11 @@ matchlist.addEventListener("click",function(event){
                 var team2=document.getElementById(locTeam2).innerText;
                 var point1=document.getElementById(locPoint1).value;
                 var point2=document.getElementById(locPoint2).value;
-                console.log(locTeam1,locPoint1,locTeam2,locPoint2);
-                if((point1==0) & (point2==0)){
+                 confirm("Are you shore?");
+                if(confirm){
+                    document.getElementById(buttId).setAttribute("class","hidden");
+                } else {
                     break;
-                } else if(point1!=0 || point2!=0){
-                    confirm("Are you shore?");
-                    if(confirm){
-                        document.getElementById(buttId).setAttribute("class","hidden");
-                    } else {
-                        break;
-                    }
                 }
                 for(k=1;k<=nteam;k++){
                     var checkteam=document.getElementById("resTeam"+k).innerText;
@@ -85,7 +80,6 @@ matchlist.addEventListener("click",function(event){
                     pts2=Number(pts2);
                     nwin=Number(nwin);
                     nwin=nwin+1;
-                    console.log(nwin);
                     document.getElementById("resWin"+team1Id).innerHTML=nwin;
                     var dif=point1-point2;
                     pts1=pts1+dif;
@@ -101,7 +95,6 @@ matchlist.addEventListener("click",function(event){
                     pts2=Number(pts2);
                     nwin=Number(nwin);
                     nwin=nwin+1;
-                    console.log(nwin);
                     document.getElementById("resWin"+team2Id).innerHTML=nwin;                   
                     var dif=point2-point1;
                     pts1=pts1-dif;
@@ -118,11 +111,7 @@ matchlist.addEventListener("click",function(event){
                     ndraw2=ndraw2+1;
                     document.getElementById("resDraw"+team1Id).innerHTML=ndraw1;
                     document.getElementById("resDraw"+team2Id).innerHTML=ndraw2;
-                    console.log(ndraw1,ndraw2);
                 }
-
-                console.log("success",team1,team2,point1,point2);
-
                 break;
             }
         }
@@ -185,7 +174,6 @@ function generateTables(nteam,numberTables,i){
     cell4.appendChild(t5);
     var t6=document.createTextNode("Pts.");
     cell5.appendChild(t6);
-    console.log(tabx,teams,i);
     for(j=1;j<=teams;j++){
         addRows(tabx,teams,j,i);
     }
