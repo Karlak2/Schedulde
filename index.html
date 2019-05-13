@@ -5,11 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
         <link rel="stylesheet" href="styles/base.css">
+        <script src="scripts/menu.js" defer></script>
         <script src="scripts/reg.js" defer></script>
         <script src="scripts/results.js" defer></script>       
         <script src="scripts/schedulde.js" defer></script>
-        <script src="scripts/menu.js" defer></script>
         <script src="scripts/functions.js" defer></script>
+        <script src="scripts/menu-functions.js" defer></script>
     </head>
     <body>
         <div class="header">
@@ -31,9 +32,9 @@
                             <th>Players</th>
                         </tr>
                     </table>
-                    <a class="button is-success add" onclick="add()">Add player</a>
-                    <a class="button is-link close" onclick="lock()">Close</a>
-                    <a class="button is-danger cancel2 hidden" onclick="cancel2()">Cancel</a>
+                    <a class="button is-success add" onclick="add(items)">Add player</a>
+                    <a class="button is-link close" onclick="lock(items)">Close</a>
+                    <a class="button is-danger cancel2 hidden" onclick="cancel2(items)">Cancel</a>
                     <a class="button is-success confirm hidden">Please confirm</a>
                 </div>
                 <div class="schedulde hidden">

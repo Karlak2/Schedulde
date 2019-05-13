@@ -1,95 +1,34 @@
-var butt=document.getElementsByClassName("confirm")[0];
-butt.addEventListener("click",function(event){
-    event.preventDefault;
+items.butt.addEventListener("click",function(){
     schedulde(items);
-    var table=document.getElementsByClassName("table")[0];
+    var table=items.entry;
     var nteam=table.rows.length;
-    nteam=nteam-1;
-    var even=false;
+    nteam-=1;
+    var even;
     if(nteam % 2 == 0){
         even=true;
     }
-    var group=false;
-    var maintable=false;
-    var is3=false;
-    var is4=false;
-    var is5=false;
-    var is6=false;
-    var is7=false;
-    if(nteam % 3  === 0){
-        group=true;
-        is3=true;
-    }
-    if(nteam % 4 ===0){
-        group=true;
-        is4=true;
-    }
-    if(nteam % 5 ===0){
-        group=true;
-        is5=true;
-    }
-    if(nteam % 6 ===0){
-        group=true;
-        is6=true;
-    }
-    if(nteam % 7 ===0){
-        group=true;
-        is7=true;
+    var maintable;
+    for(let i=3;i<=7;i++){
+        if(nteam % i  == 0){
+            var text3="Group round ";
+            let z=nteam/i;
+            if(z>1){
+                text3=text3+z+" x "+i;
+                addOption(items.champTypeList,text3);
+            }
+        }        
     }
     for(i=1;i<=10;i++){
-        var x=Math.pow(2,i);
-        if(nteam===x){
+        var x=2**i;
+        if(nteam==x){
             maintable=true;
         }
     }
-    var champTypeList = document.getElementById("champ-type");
     var text1="Round robin";
     var text2="Partial round robin";
     var text4="Main table";
-    addOption(champTypeList,text1);
-    addOption(champTypeList,text2);
-    if(group){
-        if(is3){
-            var text3="Group round ";
-            var z=nteam/3;
-            if(z>1){
-                text3=text3+z+" x 3";
-                addOption(champTypeList,text3);
-            }
-        }
-        if(is4){
-            var text3="Group round ";
-            var z=nteam/4;
-            if(z>1){
-                text3=text3+z+" x 4";
-                addOption(champTypeList,text3);
-            }
-        }
-        if(is5){
-            var text3="Group round ";
-            var z=nteam/5;
-            if(z>1){
-                text3=text3+z+" x 5";
-                addOption(champTypeList,text3);
-            }
-        }
-        if(is6){
-            var text3="Group round ";
-            var z=nteam/6;
-            if(z>1){
-                text3=text3+z+" x 6";
-                addOption(champTypeList,text3);
-            }
-        }
-        if(is7){
-            var text3="Group round ";
-            var z=nteam/7;
-            if(z>1){
-                text3=text3+z+" x 7";
-                addOption(champTypeList,text3);
-            }
-        }
-    }
+    addOption(items.champTypeList,text1);
+    addOption(items.champTypeList,text2);
     var roundNum=document.getElementById("round-num");
     if(even){
         for(i=2;i<=nteam;i++){
@@ -101,7 +40,7 @@ butt.addEventListener("click",function(event){
         } 
     }
     if(maintable){
-        addOption(champTypeList,text4);
+        addOption(items.champTypeList,text4);
     }
 });
 

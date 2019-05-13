@@ -1,10 +1,10 @@
-function add(){
-    var table=document.getElementsByClassName("table")[0];
+function add(items){
+    var table=items.entry;
     var row=table.insertRow(-1);
     var cell1=row.insertCell(0);
     var cell2=row.insertCell(1);
     var cell3=row.insertCell(2);
-    var x=row.rowIndex;
+    let x=row.rowIndex;
     cell1.innerHTML=x;
     var input=document.createElement("input");
     input.setAttribute("type","text");
@@ -21,15 +21,12 @@ function add(){
     return x;
 }
 
-var entry=document.getElementsByClassName("entry")[0];
-entry.addEventListener("click",function(event){
-    event.preventDefault;
+items.entry.addEventListener("click",function(event){
     var buttId=event.target.id;
     if(event.target.nodeName == "A"){
-        var buttId=event.target.id;
-        var table=document.getElementsByClassName("table")[0];
-        var x=table.rows.length;
-        for(i=1;i<=x;i++){
+        var table=items.entry;
+        let x=table.rows.length;
+        for(let i=1; i <=x ; i++){
             var rowId="delButton"+i;
             if(buttId==rowId){
                 table.deleteRow(i);        
@@ -47,45 +44,16 @@ entry.addEventListener("click",function(event){
     }
 })
 
-function change(){
-    var y=document.getElementById("exchange").value;
-    var table=document.getElementsByClassName("table")[0];
-    if(y<=table.rows.length && y>0){
-        table.deleteRow(y);
-        for(i = 1; i <= table.rows.length ; i++) {
-            table.rows[i].cells[0].innerHTML=i;
-            var z="team"+i;
-            document.getElementsByTagName("input")[i-1].setAttribute("placeholder",z);         
-            document.getElementsByTagName("input")[i-1].setAttribute("id",z);
-            document.getElementsByClassName()
-        }
-    } else {
-        cancel();
-    }
+function lock(items){
+    items.add1.classList.add("hidden");
+    items.close.classList.add("hidden");
+    items.confirm.classList.remove("hidden");
+    items.cancel2.classList.remove("hidden");
 }
 
-function cancel(){
-    var add1=document.getElementsByClassName("add")[0];
-    var close=document.getElementsByClassName("close")[0];
-    add1.classList.remove("hidden");
-    close.classList.remove("hidden");
-}
-
-function lock(){
-    var add1=document.getElementsByClassName("add")[0];
-    var close=document.getElementsByClassName("close")[0];
-    var confirm=document.getElementsByClassName("confirm")[0];
-    var cancel2=document.getElementsByClassName("cancel2")[0];
-    add1.classList.add("hidden");
-    close.classList.add("hidden");
-    confirm.classList.remove("hidden");
-    cancel2.classList.remove("hidden");
-}
-
-function cancel2(){
-    var confirm=document.getElementsByClassName("confirm")[0];
-    var cancel2=document.getElementsByClassName("cancel2")[0];
-    cancel();
-    confirm.classList.add("hidden");
-    cancel2.classList.add("hidden");
+function cancel2(items){
+    items.add1.classList.remove("hidden");
+    items.close.classList.remove("hidden");
+    items.confirm.classList.add("hidden");
+    items.cancel2.classList.add("hidden");
 }
