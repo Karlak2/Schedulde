@@ -8,7 +8,6 @@ var items={
     rounds:document.getElementById("player-num"),
 };
 
-
 function reg(items){
     hideElement(items.scheditem);
     hideElement(items.resitem);
@@ -34,10 +33,6 @@ function results(items){
     removeColor(items.regback);
     addColor(items.resback);
     removeColor(items.schedback);
-}
-
-function closeReg(){
-    schedulde(items);
 }
 
 function hideElement(thing){
@@ -75,4 +70,3 @@ function removeClass (element, classToRemove) {
 	}
     element.className = classList.join(' ');
 }
-

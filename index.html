@@ -8,7 +8,8 @@
         <script src="scripts/reg.js" defer></script>
         <script src="scripts/results.js" defer></script>       
         <script src="scripts/schedulde.js" defer></script>
-        <script src="scripts/menu.js" defer></script>       
+        <script src="scripts/menu.js" defer></script>
+        <script src="scripts/functions.js" defer></script>
     </head>
     <body>
         <div class="header">
@@ -24,20 +25,16 @@
             </div>
             <div class="content">
                 <div class="registration">
-                    <table class="table is-hoverable is-bordered entry">
+                    <table class="table is-narrow is-bordered entry">
                         <tr>
                             <th>Number</th>
                             <th>Players</th>
                         </tr>
                     </table>
                     <a class="button is-success add" onclick="add()">Add player</a>
-                    <a class="button is-danger modify" onclick="modify()">Modify</a>
                     <a class="button is-link close" onclick="lock()">Close</a>
-                    <a class="button is-link change hidden" onclick="change()">Delete</a>
-                    <input type="number" id="exchange" class="input ex1 hidden"/>
-                    <a class="button is-danger cancel hidden" onclick="cancel()">Cancel</a>
                     <a class="button is-danger cancel2 hidden" onclick="cancel2()">Cancel</a>
-                    <a class="button is-success confirm hidden" onclick="closeReg()">Please confirm</a>
+                    <a class="button is-success confirm hidden">Please confirm</a>
                 </div>
                 <div class="schedulde hidden">
                     <div>
@@ -60,6 +57,9 @@
                 <div class="results hidden">
                     <div class="result">
 
+                    </div>
+                    <div class="result-hidden hidden">
+                        
                     </div>
                 </div>
             </div>

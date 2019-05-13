@@ -1,6 +1,7 @@
 var butt=document.getElementsByClassName("confirm")[0];
 butt.addEventListener("click",function(event){
     event.preventDefault;
+    schedulde(items);
     var table=document.getElementsByClassName("table")[0];
     var nteam=table.rows.length;
     nteam=nteam-1;
@@ -112,9 +113,8 @@ function addOption(location,ntext){
 }
 var sched=document.getElementsByClassName("schedbutton")[0];
 sched.addEventListener("click",function(event){
-    confirm("Are you shore?");  
-    if(confirm){
-        event.preventDefault;
+    var ny=confirm("Are you shore?");  
+    if(ny==true){
         var type=document.getElementById("champ-type").value;
         var table=document.getElementsByClassName("table")[0];
         var nteam=table.rows.length;
@@ -126,6 +126,8 @@ sched.addEventListener("click",function(event){
         }
         var nj=1;
         var nk=1;
+        var sched=document.getElementsByClassName("schedbutton")[0];
+        sched.classList.add("hidden");
         if(type=="Round robin"){
             for(i=0;i<=nteam-1;i++){
                 teamlist.push(i+1);
@@ -160,7 +162,12 @@ sched.addEventListener("click",function(event){
                 var nford=nteam-1;
             }
             var nford=document.getElementById("round-num").value;
-            partial(nteam,nford,even,teamlist,nj,nk,roundz);
+            if(nford=="Number of rounds"){
+                alert("Select the number of rounds please!");
+                sched.classList.remove("hidden");
+            } else {
+                partial(nteam,nford,even,teamlist,nj,nk,roundz);
+            }
         } else if(type=="Main table") {
             maintable();
         } else {
@@ -177,8 +184,8 @@ sched.addEventListener("click",function(event){
                 }
             }
         }
-        var sched=document.getElementsByClassName("schedbutton")[0];
-        sched.classList.add("hidden");
+    } else {
+        console.log("Do nothing");
     }
 });
 
@@ -332,7 +339,7 @@ function partial(nteam,nford,even,teamlist,nj,nk,roundz){
         var matchlist=document.getElementsByClassName("matchlist")[0];
         for(y=1;y<=nford;y++){
             var roundy=(roundz-1)*nford+y;
-            createRound(matchlist,roundy,nj,nteam/2);
+            createRound(matchlist,y,roundy,nj,nteam/2);
         }
         for(i=0;i<=nmatch-1;i++){
             for(j=0;j<=1;j++){
@@ -354,19 +361,12 @@ function robin(nteam,nford,even,teamlist,nj,nk,roundz){
     var nmatch=nteam*(nteam-1)/2;
     if(even){
     // generating of schedulde matrix.
-        var ind = [];
-        for(i=0;i<=nford-1;i++){
-            ind[i]= [];
-            for(j=0;j<=nford-1;j++){
-                ind[i][j]=i+j+1;
-                if(ind[i][j] > nford){
-                    ind[i][j]=ind[i][j]-nford;
-                }
-            }
-        }
+        var ind=[];
+        scheduleMatrix(nteam,ind,even);
+        console.log(ind);
         var nt2=0;
 // generating matchlist, x is the length of full matchlist.
-            for(i=1;i<=nford;i++){
+            for(i=1;i<=nteam-1;i++){
                 var nt=0;
                 for(j=0;j<=nford-1;j++){
                     for(k=0;k<=nford-1;k++){
@@ -385,7 +385,7 @@ function robin(nteam,nford,even,teamlist,nj,nk,roundz){
                             }
                         }
                     }
-                }            
+                } 
             }
 // selection of the same row pairs, nt2 is the new length of matchlist
             for (l=1;l<=x;l++){
@@ -393,7 +393,7 @@ function robin(nteam,nford,even,teamlist,nj,nk,roundz){
                 ntlist[l][0]=ntlist[l][1];
                 ntlist[l][1]=temp;
                 for(m=0;m<=(l-1);m++){
-                    if((ntlist[l][0]===ntlist[m][0]) & (ntlist[l][1]===ntlist[m][1])){
+                    if((ntlist[l][0]==ntlist[m][0]) & (ntlist[l][1]==ntlist[m][1])){
                         ntlist[l][0]=0;
                         ntlist[l][1]=0;
                     }
@@ -414,8 +414,9 @@ function robin(nteam,nford,even,teamlist,nj,nk,roundz){
             var matchlist=document.getElementsByClassName("matchlist")[0];
             for(y=1;y<=nford;y++){
                 var roundy=(roundz-1)*nford+y;
-                createRound(matchlist,roundy,nj,nteam/2);
+                createRound(matchlist,y,roundy,nj,nteam/2);
             }
+            console.log(ntlist2);
             for(i=0;i<=nmatch-1;i++){
                 for(j=0;j<=1;j++){
                     var x = ntlist2[i][j];             
@@ -432,23 +433,16 @@ function robin(nteam,nford,even,teamlist,nj,nk,roundz){
 // the same methods for unpair tema number.
     else {
         var ind = [];
-        for(i=0;i<=nford-1;i++){
-            ind[i]= [];
-            for(j=0;j<=nford-1;j++){
-                ind[i][j]=i+j+1;
-                if(ind[i][j] > nteam){
-                    ind[i][j]=ind[i][j]-nteam;
-                }
-            }
-        }
+        scheduleMatrix(nteam,ind,even);
+        console.log(ind);
         var nt2=0;
         for(i=1;i<=nford;i++){
             var nt=0;
             for(j=0;j<=nford-1;j++){
                 for(k=0;k<=nford-1;k++){
-                    if(ind[j][k] === i){
+                    if(ind[j][k] == i){
                         var x=(i-1)*(nford)+nt;
-                        if(j === k){
+                        if(j == k){
                             ntlist[x] = [];
                             ntlist[x][0]= teamlist[j];
                             ntlist[x][1] = teamlist[nteam];
@@ -466,7 +460,7 @@ function robin(nteam,nford,even,teamlist,nj,nk,roundz){
         ntlist[0][0]=0;
         ntlist[0][1]=0;
         for (l=1;l<=x;l++){
-            if((ntlist[l][0]===100) || (ntlist[l][1]===100)){
+            if((ntlist[l][0]==100) || (ntlist[l][1]==100)){
                 ntlist[l][0]=0;
                 ntlist[l][1]=0;
             }
@@ -474,7 +468,7 @@ function robin(nteam,nford,even,teamlist,nj,nk,roundz){
             ntlist[l][0]=ntlist[l][1];
             ntlist[l][1]=temp;
             for(m=0;m<=(l-1);m++){
-                if((ntlist[l][0]===ntlist[m][0]) & (ntlist[l][1]===ntlist[m][1])){
+                if((ntlist[l][0]==ntlist[m][0]) & (ntlist[l][1]==ntlist[m][1])){
                     ntlist[l][0]=0;
                     ntlist[l][1]=0;
                 }
@@ -494,7 +488,7 @@ function robin(nteam,nford,even,teamlist,nj,nk,roundz){
         var matchlist=document.getElementsByClassName("matchlist")[0];
         for(y=1;y<=nteam;y++){
             var roundy=(roundz-1)*nteam+y;
-            createRound(matchlist,roundy,nj,(nteam-1)/2);
+            createRound(matchlist,y,roundy,nj,(nteam-1)/2);
         }
         for(i=0;i<=nmatch-1;i++){
             for(j=0;j<=1;j++){
@@ -510,7 +504,7 @@ function robin(nteam,nford,even,teamlist,nj,nk,roundz){
 }
 
 
-function createRound(matchId,y,j,nakt){
+function createRound(matchId,roundy,y,j,nakt){
     var list=matchId;
     var ndiv = document.createElement("div");
     var round=document.createAttribute("class");
@@ -521,7 +515,7 @@ function createRound(matchId,y,j,nakt){
     var nextTab=document.getElementsByClassName(nround)[0];
     var ntab=document.createElement("table");
     var tableprop=document.createAttribute("class");
-    tableprop.value="table is-striped tab"+y;
+    tableprop.value="table is-narrow tab"+y;
     ntab.setAttributeNode(tableprop);
     nextTab.appendChild(ntab);
     var tabnum="tab"+y;
@@ -532,8 +526,8 @@ function createRound(matchId,y,j,nakt){
     var headnum="tab-head"+y;
     var nextTd=document.getElementsByClassName(headnum)[0];
     var headTd=document.createElement("td");
-    headTd.setAttribute("colspan","6");
-    var t=document.createTextNode("Round"+y);
+    headTd.setAttribute("colspan","7");
+    var t=document.createTextNode("Round"+roundy);
     headTd.appendChild(t);
     nextTd.appendChild(headTd);
     for(i=1;i<=nakt;i++){
@@ -583,6 +577,13 @@ function addRowx(tabx,j,y,nakt,i){
     matchButton.setAttribute("class","matchButton");
     matchButton.appendChild(arrow);
     cell6.appendChild(matchButton);
+    var delButton=document.createElement("button");
+    var arrow2=document.createTextNode("-");
+    delButton.setAttribute("id","deleteButton"+rowId);
+    delButton.setAttribute("class","deleteButton hidden");
+    delButton.appendChild(arrow2);
+    cell6.appendChild(delButton);
+
     return;
 }
 
