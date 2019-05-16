@@ -9,6 +9,7 @@ html{
     height:100%;
 }
 
+
 .header {
     width:100%;
     height:50px;
@@ -96,8 +97,13 @@ html{
     margin-top:100px;
 }
 
+.content p:not(:last-child){
+    margin-bottom:0em;
+}
+
+
 .tabsched table{
-    width: 80%;
+    width: 90%;
     margin-top:0px;
 }    
 .tabcolor{
@@ -157,8 +163,9 @@ table td {
     text-align: center;
 }
 .group-head{
-    margin:17px 96px;
-    margin-bottom: 0px;
+    height:30px;
+    margin:17px 47.5px;
+    padding: 2px 8px;
     background-color: #0c2022;
     color:white;
 }

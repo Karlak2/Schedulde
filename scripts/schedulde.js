@@ -1,7 +1,6 @@
 items.butt.addEventListener("click",function(){
     schedulde(items);
-    var table=items.entry;
-    var nteam=table.rows.length;
+    var nteam=items.entry.rows.length;
     nteam-=1;
     var even;
     if(nteam % 2 == 0){
@@ -51,14 +50,13 @@ function addOption(location,ntext){
     location.add(option1);
 }
 var sched=document.getElementsByClassName("schedbutton")[0];
-sched.addEventListener("click",function(event){
+sched.addEventListener("click",function(){
     var ny=confirm("Are you shore?");  
     if(ny==true){
         var type=document.getElementById("champ-type").value;
-        var table=document.getElementsByClassName("table")[0];
-        var nteam=table.rows.length;
-        nteam=nteam-1;
-        var even=false;
+        var nteam=items.entry.rows.length;
+        nteam-=1;
+        var even;
         var teamlist= [];
         if(nteam % 2 == 0){
             even=true;
@@ -137,9 +135,9 @@ function group(nteam,ngroup,teamlist,even,nj,nk){
     for(i=1;i<=ngroup;i++){
         groups[i-1]=[];
         for(j=1;j<=nteam2;j++){
-            var x=ik(nteam);
+            let x=ik(nteam);
             groups[i-1][j-1]=teamlist[x-1];
-            nteam=nteam-1;
+            nteam-=1;
             teamlist.splice(x-1,1);
         }
     }
@@ -167,7 +165,7 @@ function group(nteam,ngroup,teamlist,even,nj,nk){
         }
         var matchlist1=document.getElementsByClassName("matchlist")[0];
         var grouphead= document.createElement("P");
-        grouphead.setAttribute("class","group-head")
+        grouphead.setAttribute("class","group-head tabcolor2")
         var groupContent=document.createTextNode("Group"+i);
         grouphead.appendChild(groupContent);
         matchlist1.appendChild(grouphead);
@@ -191,15 +189,7 @@ function partial(nteam,nford,even,teamlist,nj,nk,roundz){
     var nmatch=nteam*(nteam-1)/2;
     if(even){
         var ind = [];
-        for(i=0;i<=nteam-2;i++){
-            ind[i]= [];
-            for(j=0;j<=nteam-2;j++){
-                ind[i][j]=i+j+1;
-                if(ind[i][j] > nteam-1){
-                    ind[i][j]=ind[i][j]-nteam+1;
-                }
-            }
-        }
+        scheduleMatrix(nteam,ind,even);
         console.log(ind);
         var ivec=[];
         do {

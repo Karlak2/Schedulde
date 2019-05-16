@@ -38,3 +38,4 @@ function generateListOne(ind,ntlist,teamlist,nteam,i){
     }            
     return ntlist;
 }
+
