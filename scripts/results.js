@@ -35,29 +35,8 @@ sched.addEventListener("click",function(event){
         document.getElementById(v3).innerHTML=0;
         document.getElementById(v4).innerHTML=0;
    }
-   var tableG=document.getElementsByClassName("result")[0];
-   var resButt=document.createElement("a");
-   resButt.setAttribute("id","result-button");
-   resButt.setAttribute("class","button is-info");
-   resButt.setAttribute("onclick","hidResult()");
-   var text5=document.createTextNode("Result");
-   resButt.appendChild(text5);
-   tableG.appendChild(resButt);
 })
 
-function hidResult(){
-    var hiddenRes=document.getElementsByClassName("result-hidden")[0];
-    hiddenRes.classList.remove("hidden");
-}
-
-function robinResults(){
-    var table=document.getElementsByClassName("table")[0];
-    var nteam=table.rows.length;
-    nteam=nteam-1;
-    var hid=document.getElementsByClassName("result-hidden")[0];
-    hid.classList.remove("hidden");
-    var resTable = document.createElement("table");
-}
 
 var matchlist=document.getElementsByClassName("matchlist")[0];
 matchlist.addEventListener("click",function(event){

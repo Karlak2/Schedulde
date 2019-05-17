@@ -1,5 +1,5 @@
 *{
-    margin:0 auto;
+    margin:0;
     padding:0;
     box-sizing: border-box;
 }
@@ -15,12 +15,17 @@ html{
     height:50px;
     background-color: black;
     font-size: 2rem;
+    text-align: left;
+}
+.logo-con{
+    background-color: #5a5a5a;
+    width:230px;
+    padding:1px;
 }
 
 .index-icon {
     text-decoration: none;
-    background-color: #5a5a5a;
-    padding:5px 4px;
+    padding:6px 12px;
     color:white;
 }
 
@@ -64,6 +69,10 @@ html{
     height:100%;
 }
 
+.content table {
+    width: 90%;
+}
+
 .registration table{
     margin:0;
     width:40%;
@@ -95,6 +104,7 @@ html{
 
 .matchlist{
     margin-top:100px;
+    padding-left:20px;
 }
 
 .content p:not(:last-child){
@@ -164,7 +174,7 @@ table td {
 }
 .group-head{
     height:30px;
-    margin:17px 47.5px;
+    margin:17px 94px 17px 0px;
     padding: 2px 8px;
     background-color: #0c2022;
     color:white;

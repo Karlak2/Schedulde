@@ -9,10 +9,9 @@ items.butt.addEventListener("click",function(){
     var maintable;
     for(let i=3;i<=7;i++){
         if(nteam % i  == 0){
-            var text3="Group round ";
             let z=nteam/i;
             if(z>1){
-                text3=text3+z+" x "+i;
+                text3=`Group round ${z} x ${i}`;
                 addOption(items.champTypeList,text3);
             }
         }        
@@ -63,8 +62,9 @@ sched.addEventListener("click",function(){
         }
         var nj=1;
         var nk=1;
-        var sched=document.getElementsByClassName("schedbutton")[0];
-        sched.classList.add("hidden");
+        items.sched.classList.add("hidden");
+        items.order.classList.add("hidden");
+        items.selectTeam.classList.add("hidden");
         if(type=="Round robin"){
             for(i=0;i<=nteam-1;i++){
                 teamlist.push(i+1);
@@ -109,9 +109,8 @@ sched.addEventListener("click",function(){
             maintable();
         } else {
             for(j=3;j<=7;j++){
-                var text="Group round ";
                 var ngroup=nteam/i;
-                var text1 = text+ngroup+" x "+i;
+                var text1 =`Group round ${ngroup} x ${i}`;
                 if(type==text1){    
                     for(i=1;i<=nteam;i++){
                     teamlist.push(i);
@@ -517,11 +516,6 @@ function addRowx(tabx,j,y,nakt,i){
 }
 
 function ik(ndata){
-    var x=Math.random();
-    for(var i=1;i<=ndata;i++){
-        if((x>(i-1)/ndata) & (x<=i/ndata)){
-           var ij=i;
-           return ij;
-        }
-    }
+    var ij=Math.floor(Math.random()*ndata)+1;
+    return ij;
 }

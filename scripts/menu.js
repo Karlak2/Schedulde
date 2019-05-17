@@ -12,5 +12,7 @@ var items={
     cancel2:document.getElementsByClassName("cancel2")[0],
     butt:document.getElementsByClassName("confirm")[0],
     champTypeList:document.getElementById("champ-type"),
-    
+    sched:document.getElementsByClassName("schedbutton")[0],
+    order:document.getElementsByClassName("order")[0],
+    selectTeam:document.getElementsByClassName("select-team")[0],
 };
