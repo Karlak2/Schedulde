@@ -39,3 +39,22 @@ function generateListOne(ind,ntlist,teamlist,nteam,i){
     return ntlist;
 }
 
+function reOpt(){
+    var opt=items.champTypeList.length;
+    var round=items.roundNum.length;
+    if(opt>1){
+        for(let i=1;i<=opt;i++){
+            items.champTypeList.remove(1);
+        }
+    }
+    if(round>1){
+        for(let j=1;j<=round;j++){
+            items.roundNum.remove(1);
+        }
+    }
+}
+
+function visibleElement(myClass){
+    $(myClass).css('display','inline-block');
+}
+

@@ -1,4 +1,4 @@
-function add(items){
+function add(){
     var table=items.entry;
     var row=table.insertRow(-1);
     var cell1=row.insertCell(0);
@@ -23,6 +23,7 @@ function add(items){
 
 items.entry.addEventListener("click",function(event){
     var buttId=event.target.id;
+    deleteButton(buttId);
     if(event.target.nodeName == "A"){
         var table=items.entry;
         let x=table.rows.length;
@@ -44,16 +45,18 @@ items.entry.addEventListener("click",function(event){
     }
 })
 
-function lock(items){
-    items.add1.classList.add("hidden");
-    items.close.classList.add("hidden");
-    items.confirm.classList.remove("hidden");
-    items.cancel2.classList.remove("hidden");
+function lock(){
+    $(items.add1).hide();
+    $(items.close).hide();
+    visibleElement(items.confirm);
+    visibleElement(items.cancel2);
 }
 
-function cancel2(items){
-    items.add1.classList.remove("hidden");
-    items.close.classList.remove("hidden");
-    items.confirm.classList.add("hidden");
-    items.cancel2.classList.add("hidden");
+function cancel2(){    
+    reOpt();
+    $(items.selectTeam).hide();   
+    $(items.confirm).hide();   
+    $(items.cancel2).hide();   
+    visibleElement(items.add1);
+    visibleElement(items.close);
 }

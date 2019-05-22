@@ -1,28 +1,15 @@
 function reg(items){
-    hideElement(items.scheditem);
-    hideElement(items.resitem);
-    showElement(items.regitem);
+    $(items.scheditem).slideToggle();
+    $(items.regitem).slideToggle();
     addColor(items.regback);
-    removeColor(items.resback);
     removeColor(items.schedback);
 }
 
 function schedulde(items){
-    showElement(items.scheditem);
-    hideElement(items.resitem);
-    hideElement(items.regitem);   
+    $(items.scheditem).slideToggle();
+    $(items.regitem).slideToggle();
     removeColor(items.regback);
-    removeColor(items.resback);
     addColor(items.schedback);
-}
-
-function results(items){
-    hideElement(items.scheditem);
-    showElement(items.resitem);
-    hideElement(items.regitem);   
-    removeColor(items.regback);
-    addColor(items.resback);
-    removeColor(items.schedback);
 }
 
 function hideElement(thing){

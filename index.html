@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
         <link rel="stylesheet" href="styles/base.css">
+        <script src="./scripts/jquery.js" defer></script>
         <script src="scripts/menu.js" defer></script>
         <script src="scripts/reg.js" defer></script>
         <script src="scripts/results.js" defer></script>       
@@ -23,7 +24,6 @@
                 <ul class="menu-items">
                     <li class="reg-item selected" onclick="reg(items)"><a>Registration</a></li>
                     <li class="sched-item" onclick="schedulde(items)"><a>Schedule</a></li>
-                    <li class="res-item" onclick="results(items)"><a>Results</a></li>
                 </ul>
             </div>
             <div class="content">
@@ -34,35 +34,30 @@
                             <th>Players</th>
                         </tr>
                     </table>
-                    <a class="button is-success add" onclick="add(items)">Add player</a>
-                    <a class="button is-link close" onclick="lock(items)">Close</a>
-                    <a class="button is-danger cancel2 hidden" onclick="cancel2(items)">Cancel</a>
+                    <a class="button is-success add" onclick="add()">Add player</a>
+                    <a class="button is-link close" onclick="lock()">Close</a>
+                    <a class="button is-danger cancel2 hidden" onclick="cancel2()">Cancel</a>
                     <a class="button is-success confirm hidden">Please confirm</a>
                 </div>
                 <div class="schedulde hidden">
-                        <div class="result">
-
-                        </div>        
                     <div>
                         <div class="order select is-info">
                             <select id="champ-type">
                                 <option>Select option</option>
                             </select>
                         </div>
-                        <div class="select-team select is-info">
+                        <div class="select-team select is-info hidden">
                             <select id="round-num">
                                 <option>Number of rounds</option>
                             </select>
                         </div>
-                        <a class="schedbutton button is-info" style="
-                        margin-top: 10px;">Confirm</a>
                     </div>
-                    <div class="matchlist">
-                    </div>
-                </div>
-                <div class="results hidden">
+                    <a class="schedbutton button is-info" style="
+                    margin-top: 10px;">Confirm</a>
                     <div class="result">
-
+                    </div>        
+                    <div class="matchlist">
+                        
                     </div>
                 </div>
             </div>

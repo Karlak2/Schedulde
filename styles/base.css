@@ -64,7 +64,7 @@ html{
 
 .content{
     width:auto;
-    margin-left:350px;
+    margin-left:30%;
     padding:20px;
     height:100%;
 }
@@ -75,7 +75,7 @@ html{
 
 .registration table{
     margin:0;
-    width:40%;
+    width:60%;
 }
 
 .registration{

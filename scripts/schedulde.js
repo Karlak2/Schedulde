@@ -1,4 +1,4 @@
-items.butt.addEventListener("click",function(){
+items.confirm.addEventListener("click",function(){
     schedulde(items);
     var nteam=items.entry.rows.length;
     nteam-=1;
@@ -29,11 +29,11 @@ items.butt.addEventListener("click",function(){
     addOption(items.champTypeList,text2);
     var roundNum=document.getElementById("round-num");
     if(even){
-        for(i=2;i<=nteam;i++){
-            addOption(roundNum,i-1);
+        for(i=2;i<=nteam-2;i++){
+            addOption(roundNum,i);
         }
     } else {
-        for(i=2;i<=nteam;i=i+2){
+        for(i=2;i<=nteam-2;i=i+2){
             addOption(roundNum,i);
         } 
     }
@@ -48,82 +48,90 @@ function addOption(location,ntext){
     option1.appendChild(text);
     location.add(option1);
 }
-var sched=document.getElementsByClassName("schedbutton")[0];
-sched.addEventListener("click",function(){
+items.sched.addEventListener("click",function(){
+    var def=$('#champ-type').val();
+    if(def=="Select option"){return;}
     var ny=confirm("Are you shore?");  
     if(ny==true){
-        var type=document.getElementById("champ-type").value;
-        var nteam=items.entry.rows.length;
-        nteam-=1;
-        var even;
-        var teamlist= [];
-        if(nteam % 2 == 0){
-            even=true;
-        }
-        var nj=1;
-        var nk=1;
-        items.sched.classList.add("hidden");
-        items.order.classList.add("hidden");
-        items.selectTeam.classList.add("hidden");
-        if(type=="Round robin"){
-            for(i=0;i<=nteam-1;i++){
-                teamlist.push(i+1);
-                var resNumber="resNumber"+(i+1);
-                var resTeam="resTeam"+(i+1);
-                var teamText="team"+(i+1);
-                var name=document.getElementById(teamText).value;
-                document.getElementById(resNumber).innerHTML=(i+1);
-                document.getElementById(resTeam).innerHTML=name;
+            var type=document.getElementById("champ-type").value;
+            var nteam=items.entry.rows.length;
+            nteam-=1;
+            var even;
+            var teamlist= [];
+            if(nteam % 2 == 0){
+                even=true;
             }
-            var roundz=1;
-            if(even){
-                var nford=nteam-1;
-                robin(nteam,nford,even,teamlist,nj,nk,roundz);
+            var nj=1;
+            var nk=1;
+            $(items.sched).hide()
+            $(items.order).hide();
+            $(items.selectTeam).hide();   
+            if(type=="Round robin"){
+                for(i=0;i<=nteam-1;i++){
+                    teamlist.push(i+1);
+                    var resNumber="resNumber"+(i+1);
+                    var resTeam="resTeam"+(i+1);
+                    var teamText="team"+(i+1);
+                    var name=document.getElementById(teamText).value;
+                    document.getElementById(resNumber).innerHTML=(i+1);
+                    document.getElementById(resTeam).innerHTML=name;
+                }
+                var roundz=1;
+                if(even){
+                    var nford=nteam-1;
+                    robin(nteam,nford,even,teamlist,nj,nk,roundz);
+                } else {
+                    teamlist.push(100);
+                    var nford=nteam;
+                    robin(nteam,nford,even,teamlist,nj,nk,roundz);
+                }
+            } else if(type=="Partial round robin") {
+                var roundz=1;
+                var nford=document.getElementById("round-num").value;
+                if(nford=="Number of rounds"){
+                    alert("Select the number of rounds please!");
+                    sched.classList.remove("hidden");
+                    return;
+                } else {
+                    partial(nteam,nford,even,teamlist,nj,nk,roundz);
+                }
+                for(i=0;i<=nteam-1;i++){
+                    teamlist.push(i+1);
+                    var resNumber="resNumber"+(i+1);
+                    var resTeam="resTeam"+(i+1);
+                    var teamText="team"+(i+1);
+                    var name=document.getElementById(teamText).value;
+                    document.getElementById(resNumber).innerHTML=(i+1);
+                    document.getElementById(resTeam).innerHTML=name;
+                }
+            } else if(type=="Main table") {
+                maintable();
             } else {
-                teamlist.push(100);
-                var nford=nteam;
-                robin(nteam,nford,even,teamlist,nj,nk,roundz);
+                for(j=3;j<=7;j++){
+                    var ngroup=nteam/i;
+                    var text1 =`Group round ${ngroup} x ${i}`;
+                    if(type==text1){    
+                        for(i=1;i<=nteam;i++){
+                        teamlist.push(i);
+                    }
+                        group(nteam,ngroup,teamlist,even,nj,nk);
+                        break;
+                    }
+                }
             }
-        } else if(type=="Partial round robin") {
-            var roundz=1;
-            for(i=0;i<=nteam-1;i++){
-                teamlist.push(i+1);
-                var resNumber="resNumber"+(i+1);
-                var resTeam="resTeam"+(i+1);
-                var teamText="team"+(i+1);
-                var name=document.getElementById(teamText).value;
-                document.getElementById(resNumber).innerHTML=(i+1);
-                document.getElementById(resTeam).innerHTML=name;
-            }
-            if(even){
-                var nford=nteam-1;
-            }
-            var nford=document.getElementById("round-num").value;
-            if(nford=="Number of rounds"){
-                alert("Select the number of rounds please!");
-                sched.classList.remove("hidden");
-            } else {
-                partial(nteam,nford,even,teamlist,nj,nk,roundz);
-            }
-        } else if(type=="Main table") {
-            maintable();
         } else {
-            for(j=3;j<=7;j++){
-                var ngroup=nteam/i;
-                var text1 =`Group round ${ngroup} x ${i}`;
-                if(type==text1){    
-                    for(i=1;i<=nteam;i++){
-                    teamlist.push(i);
-                }
-                    group(nteam,ngroup,teamlist,even,nj,nk);
-                    break;
-                }
-            }
+            return;
         }
-    } else {
-        console.log("Do nothing");
-    }
 });
+
+items.champTypeList.addEventListener("click",function(){
+    let x=items.champTypeList.value;
+    if(x=="Partial round robin"){
+        $(items.selectTeam).css('display','inline-block');
+    } else {
+        $(items.selectTeam).hide();   
+    }
+})
 
 function maintable(){
 }
@@ -177,7 +185,7 @@ function group(nteam,ngroup,teamlist,even,nj,nk){
             teams.push(100);
             robin(nteam2,nteam2,even,teams,nj,nk,roundz);
         }    
-        i=i+1;
+        i+=1;
         roundz=roundz+1;
     } while(i<ngroup+1);
 }
@@ -240,7 +248,7 @@ function partial(nteam,nford,even,teamlist,nj,nk,roundz){
                 }            
             }           
         }
-        console.log(ntlist,x);
+        console.log(ntlist,"I'm " +x);
         for (l=1;l<=x;l++){
             var temp=ntlist[l][0];
             ntlist[l][0]=ntlist[l][1];
@@ -288,7 +296,7 @@ function robin(nteam,nford,even,teamlist,nj,nk,roundz){
     var ntlist2= [];
     var nmatch=nteam*(nteam-1)/2;
     if(even){
-    // generating of schedulde matrix.
+    // generating of schedule matrix.
         var ind=[];
         scheduleMatrix(nteam,ind,even);
         console.log(ind);
@@ -358,7 +366,7 @@ function robin(nteam,nford,even,teamlist,nj,nk,roundz){
         return (nteam,nford,even,teamlist,nj,nk);
         } 
 
-// the same methods for unpair tema number.
+// the same methods for unpair teams number.
     else {
         var ind = [];
         scheduleMatrix(nteam,ind,even);

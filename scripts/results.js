@@ -189,6 +189,7 @@ matchlist.addEventListener("click",function(event){
                 break;
             }
         }
+       
     }
 });
 
