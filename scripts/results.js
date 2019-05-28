@@ -10,7 +10,7 @@ sched.addEventListener("click",function(event){
     } else if(type=="Partial round robin") {
         var numberTables=1;
     } else if(type=="Main table") {
-        
+        return;
     } else {
         for(i=3;i<=7;i++){
             var text="Group round ";

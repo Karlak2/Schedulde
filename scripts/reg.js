@@ -1,9 +1,7 @@
 items.teamNumber.addEventListener("click",function(){
+    var num=document.getElementById("teamNum").value;
+    if(num==""|| num==0 ||num>32){return;}
     showElement(items.allReg);
-    let num=document.getElementById("teamNum").value;
-    if(num>30){
-        return;
-    }
     for(let i=1;i<=num;i++){
         add();
     }

@@ -114,7 +114,7 @@ items.sched.addEventListener("click",function(){
                     document.getElementById(resTeam).innerHTML=name;
                 }
             } else if(type=="Main table") {
-                maintable();
+                maintable(nteam);
             } else {
                 for(j=3;j<=7;j++){
                     var ngroup=nteam/i;
@@ -131,6 +131,7 @@ items.sched.addEventListener("click",function(){
         } else {
             return;
         }
+
 });
 
 items.champTypeList.addEventListener("click",function(){
@@ -142,8 +143,6 @@ items.champTypeList.addEventListener("click",function(){
     }
 })
 
-function maintable(){
-}
 
 function group(nteam,ngroup,teamlist,even,nj,nk){
     var nteam2=nteam/ngroup;
@@ -532,4 +531,117 @@ function addRowx(tabx,j,y,nakt,i){
 function ik(ndata){
     var ij=Math.floor(Math.random()*ndata)+1;
     return ij;
+}
+
+
+function maintable(nteam){
+    var b=logarithm(2,nteam);
+    var location=$('.matchlist')[0];
+    var a0=document.createElement("div");
+    a0.setAttribute("class","main0");
+    location.appendChild(a0);
+    var a1=document.createElement("div");
+    a1.setAttribute("class","main1 columns");
+    a0.appendChild(a1);
+    for(i=1;i<=b;i++){
+        var a2=document.createElement("div");
+        a2.setAttribute("class","column main1"+i);
+        a1.appendChild(a2);        
+    }
+        var teamNum=nteam/2;
+        var counter=0;
+        for(j=1;j<=b;j++){
+            var ti="main1"+j;
+            for(i=1;i<=teamNum;i++){
+                counter=counter+1;
+                var ti2=ti+i;
+                var tabloc=document.getElementsByClassName(ti)[0];
+                addMainElement(tabloc,ti2,counter);
+            }
+            if(j==1){
+                for(k=1;k<=nteam;k++){
+                    var ti3="mainteam"+k;
+                    var place="team"+k;
+                    var team=document.getElementById(place).value;
+                    var partof=ti3;
+                    document.getElementById(partof).innerHTML=team;   
+                }
+            }
+            teamNum=teamNum/2;
+        }
+        $('.main1 input').css("width","55px");
+        $('.main1 th').css({"color":"white","text-align":"center"});
+        var blockHeight=$('.main1').height();
+        var def=nteam/4;
+        for(m=2;m<=b;m++){
+            if(m==(b-1)){
+                var sor=".main1"+m;
+                var calcMargin=(blockHeight-def*148)/def/2;
+                var calcMargin2=(blockHeight-def*148)/def;
+                $(`${sor} table`).first().css("margin",`${calcMargin}px 0px`);
+                $(`${sor} table`).last().css("margin",`${calcMargin2}px 0px`);                
+            } else if(m==b){
+                var sor=".main1"+m;
+                var calcMargin=(blockHeight-def*148)/def/2;
+                $(`${sor} table`).css("margin",`${calcMargin}px 0px`);  
+            } else {
+                var sor=".main1"+m;
+                var calcMargin=(blockHeight-def*148)/def/2;
+                var calcMargin2=(blockHeight-def*148)/def;
+                $(`${sor} table`).css("margin",`${calcMargin2}px 0px`);
+                $(`${sor} table`).first().css("margin",`${calcMargin}px 0px`);
+                $(`${sor} table`).last().css("margin",`${calcMargin}px 0px`);
+            }
+            def=def/2;
+        }
+}
+
+function addMainElement(location,ti,i){
+    var tab1=document.createElement("table");
+    tab1.setAttribute("id",ti);
+    tab1.setAttribute("class","table is-bordered is-fullwidth");
+    var tabhead=document.createElement("th");
+    tabhead.setAttribute("class","tabcolor2");
+    tabhead.setAttribute("colspan","2");
+    var mainmatch=document.createTextNode("Match"+i);
+    tabhead.appendChild(mainmatch);
+    tab1.appendChild(tabhead);
+    var tabrow1=document.createElement("tr");
+    var tabrow2=document.createElement("tr");
+    var tabcell1=document.createElement("td");
+    tabcell1.setAttribute("id","mainteam"+(2*i-1));
+    var tabcell2=document.createElement("td");
+    var count1=document.createElement("input");
+    count1.setAttribute("id","count"+(2*i-1));
+    count1.setAttribute("type","number");
+    count1.setAttribute("class","input");
+    count1.setAttribute("min","0");
+    count1.setAttribute("value","0");
+    tabcell2.appendChild(count1);
+    var tabcell3=document.createElement("td");
+    tabcell3.setAttribute("id","mainteam"+2*i);
+    var tabcell4=document.createElement("td");
+    var count2=document.createElement("input");
+    count2.setAttribute("id","count"+(2*i));
+    count2.setAttribute("type","number");
+    count2.setAttribute("class","input");
+    count2.setAttribute("min","0");
+    count2.setAttribute("value","0");
+    tabcell4.appendChild(count2);
+    tabrow1.appendChild(tabcell1);
+    tabrow1.appendChild(tabcell2);
+    tabrow2.appendChild(tabcell3);
+    tabrow2.appendChild(tabcell4);
+    tab1.appendChild(tabrow1);
+    tab1.appendChild(tabrow2);
+    location.appendChild(tab1);
+    var aid="#"+tabcell1.id;
+    $(aid).innerWidth(170);
+    var bid="#"+tabcell3.id;
+    $(bid).innerWidth(170);
+}
+
+
+function logarithm(x,y){
+    return Math.log(y) / Math.log(x);
 }
