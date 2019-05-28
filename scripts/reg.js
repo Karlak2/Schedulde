@@ -23,7 +23,6 @@ function add(){
 
 items.entry.addEventListener("click",function(event){
     var buttId=event.target.id;
-    deleteButton(buttId);
     if(event.target.nodeName == "A"){
         var table=items.entry;
         let x=table.rows.length;

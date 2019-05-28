@@ -93,6 +93,15 @@ items.sched.addEventListener("click",function(){
                     sched.classList.remove("hidden");
                     return;
                 } else {
+                    for(i=0;i<=nteam-1;i++){
+                        teamlist.push(i+1);
+                        var resNumber="resNumber"+(i+1);
+                        var resTeam="resTeam"+(i+1);
+                        var teamText="team"+(i+1);
+                        var name=document.getElementById(teamText).value;
+                        document.getElementById(resNumber).innerHTML=(i+1);
+                        document.getElementById(resTeam).innerHTML=name;
+                    }
                     partial(nteam,nford,even,teamlist,nj,nk,roundz);
                 }
                 for(i=0;i<=nteam-1;i++){
@@ -193,7 +202,7 @@ function group(nteam,ngroup,teamlist,even,nj,nk){
 function partial(nteam,nford,even,teamlist,nj,nk,roundz){
     var ntlist = [];
     var ntlist2= [];
-    var nmatch=nteam*(nteam-1)/2;
+    var nmatch=nteam*nford/2;
     if(even){
         var ind = [];
         scheduleMatrix(nteam,ind,even);
@@ -209,17 +218,14 @@ function partial(nteam,nford,even,teamlist,nj,nk,roundz){
                 for(k=1;k<=j-1;k++){
                     if(ivec[j]==ivec[k]){
                         check=false;
-                        console.log(check,ivec);
                         break;
                     }
                 }
                 if(check==false){
-                    console.log(check,ivec);
                     break;
                 }
             }
             if(check){
-                console.log(check,ivec);
                 break;
             }
         } while (check==false);
@@ -232,7 +238,7 @@ function partial(nteam,nford,even,teamlist,nj,nk,roundz){
                     for(k=0;k<=nteam-2;k++){
                         if(ind[j][k] === ivec[i]){
                             var x=(i-1)*(nteam-1)+nt;
-                            if(j === k){
+                            if(j == k){
                                 ntlist[x] = [];
                                 ntlist[x][0]= teamlist[j];
                                 ntlist[x][1] = teamlist[nteam-1];
@@ -248,20 +254,18 @@ function partial(nteam,nford,even,teamlist,nj,nk,roundz){
                 }            
             }           
         }
-        console.log(ntlist,"I'm " +x);
+        console.log(ntlist);
         for (l=1;l<=x;l++){
-            var temp=ntlist[l][0];
-            ntlist[l][0]=ntlist[l][1];
-            ntlist[l][1]=temp;
+            var templist=[ntlist[l][0],ntlist[l][1]];
+            var [a,b]=templist;
+            [b,a]=[a,b];
             for(m=0;m<=(l-1);m++){
                 if((ntlist[l][0]===ntlist[m][0]) & (ntlist[l][1]===ntlist[m][1])){
                     ntlist[l][0]=0;
                     ntlist[l][1]=0;
                 }
             }
-            var temp=ntlist[l][0];
-            ntlist[l][0]=ntlist[l][1];
-            ntlist[l][1]=temp;
+            [a,b]=[b,a];
         }
         for(l=0;l<=x;l++){
             if(ntlist[l][0]!=0){
@@ -287,6 +291,8 @@ function partial(nteam,nford,even,teamlist,nj,nk,roundz){
                 nk=nk+1;
             }
         }
+    } else {
+        console.log("I'm odd!!");
     }
 }
 
