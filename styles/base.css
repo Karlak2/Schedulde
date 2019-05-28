@@ -193,3 +193,14 @@ table td {
     border-radius: 5px;
     padding:10px;
 }
+
+.players{
+    margin:0;
+    margin-bottom:20px;
+    width:500px;
+    height:30px;
+}
+
+.control{
+    position: absolute;
+}

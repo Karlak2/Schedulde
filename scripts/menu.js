@@ -13,4 +13,7 @@ var items={
     order:document.getElementsByClassName("order")[0],
     selectTeam:document.getElementsByClassName("select-team")[0],
     roundNum:document.getElementById("round-num"),
+    teamNumber:document.getElementsByClassName("teamNumber")[0],
+    allReg:document.getElementsByClassName("allReg")[0],
+    
 };

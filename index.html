@@ -28,16 +28,26 @@
             </div>
             <div class="content">
                 <div class="registration">
-                    <table class="table is-narrow is-bordered entry">
-                        <tr>
-                            <th>Number</th>
-                            <th>Players</th>
-                        </tr>
-                    </table>
-                    <a class="button is-success add" onclick="add()">Add player</a>
-                    <a class="button is-link close" onclick="lock()">Close</a>
-                    <a class="button is-danger cancel2 hidden" onclick="cancel2()">Cancel</a>
-                    <a class="button is-success confirm hidden">Please confirm</a>
+                    <div class="players">
+                        <div class="field">
+                            <div class="control">
+                                <input class="input is-info" id="teamNum" type="text" placeholder="Number of players (<30)">
+                            </div>
+                        </div>
+                    </div>
+                    <a class="button is-link teamNumber">Confirm</a>
+                    <div class="allReg hidden">
+                        <table class="table is-narrow is-bordered entry">
+                            <tr>
+                                <th>Number</th>
+                                <th>Players</th>
+                            </tr>
+                        </table>
+                        <a class="button is-success add" onclick="add()">Add player</a>
+                        <a class="button is-link close" onclick="lock()">Close</a>
+                        <a class="button is-danger cancel2 hidden" onclick="cancel2()">Cancel</a>
+                        <a class="button is-success confirm hidden">Please confirm</a>
+                    </div>
                 </div>
                 <div class="schedulde hidden">
                     <div>

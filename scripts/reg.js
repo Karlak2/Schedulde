@@ -1,3 +1,15 @@
+items.teamNumber.addEventListener("click",function(){
+    showElement(items.allReg);
+    let num=document.getElementById("teamNum").value;
+    if(num>30){
+        return;
+    }
+    for(let i=1;i<=num;i++){
+        add();
+    }
+    cancel2();
+})
+
 function add(){
     var table=items.entry;
     var row=table.insertRow(-1);
@@ -21,7 +33,7 @@ function add(){
     return x;
 }
 
-items.entry.addEventListener("click",function(event){
+items.entry.addEventListener("click",function(){
     var buttId=event.target.id;
     if(event.target.nodeName == "A"){
         var table=items.entry;
