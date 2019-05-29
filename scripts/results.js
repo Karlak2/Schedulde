@@ -192,7 +192,9 @@ matchlist.addEventListener("click",function(event){
                 break;
             }
         }
-       
+        var ngroup=$('.result').children().length;
+        var teamInOne=nteam/ngroup;
+
     }
 }
 });    
@@ -234,10 +236,10 @@ matchlist.addEventListener("click",function(){
             var secondRes=document.getElementById(secondId).value;
             if(firstRes>secondRes){
                 var winner=document.getElementById("mainteam"+(mTar*2-1)).innerHTML;
-                document.getElementById("mainteam"+(mTar+16)).innerHTML=winner;
+                document.getElementById("mainteam"+(mTar+nteam)).innerHTML=winner;
             } else if(firstRes<secondRes){
                 var winner=document.getElementById("mainteam"+(mTar*2)).innerHTML;
-                document.getElementById("mainteam"+(mTar+16)).innerHTML=winner;               
+                document.getElementById("mainteam"+(mTar+nteam)).innerHTML=winner;               
             } else {
                 return;
             }
