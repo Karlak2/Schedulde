@@ -39,7 +39,10 @@ sched.addEventListener("click",function(event){
 
 
 var matchlist=document.getElementsByClassName("matchlist")[0];
+
 matchlist.addEventListener("click",function(event){
+    var type=document.getElementById("champ-type").value;
+    if(type!=="Main table"){
     event.preventDefault;
     var table=document.getElementsByClassName("table")[0];
     var nteam=table.rows.length;
@@ -51,7 +54,7 @@ matchlist.addEventListener("click",function(event){
             var idOfButton="matchButton"+y;
             if(idOfButton==buttId){
                 var backButton="deleteButton"+y;
-                var r=confirm("Are you shore?");
+                var r=confirm("Are you sure?");
                 if(r==true){
                     document.getElementById(buttId).classList.add("hidden");
                     document.getElementById(backButton).classList.remove("hidden");
@@ -122,7 +125,7 @@ matchlist.addEventListener("click",function(event){
             idOfButton2="deleteButton"+j;
             if(idOfButton2==buttId){
                 var resButton="matchButton"+j;
-                var r=confirm("Are you shore?");
+                var r=confirm("Are you sure?");
                 if(r==true){
                     document.getElementById(idOfButton2).classList.add("hidden");
                     document.getElementById(resButton).classList.remove("hidden");
@@ -191,8 +194,56 @@ matchlist.addEventListener("click",function(event){
         }
        
     }
-});
-
+}
+});    
+matchlist.addEventListener("click",function(){
+    var type=document.getElementById("champ-type").value;
+    var table=document.getElementsByClassName("table")[0];
+    var nteam=table.rows.length;
+    nteam-=1;
+    if(type=="Main table"){
+        if(event.target.nodeName=="INPUT"){
+            var myid=event.target.id;
+            console.log(myid);
+            var calcid="count";
+            for(i=1;i<=nteam*2-1;i++){
+                if(calcid+i==myid){
+                    var cTar=i;
+                    break;
+                }
+            }
+            var mTar=Math.floor((cTar-1)/2)+1;
+            console.log(mTar);
+            var ford=logarithm(2,nteam);
+            var nmatch=0;
+            var vec=[];
+            vec.push(nmatch);
+            for(i=ford;i>=1;i--){
+                vec.push(vec[ford-i]+2**i);
+            }
+            for(j=1;j<=ford;j++){
+                if((cTar>vec[j-1])&&(cTar<=vec[j])){
+                    var fTar=j;
+                    break;
+                }
+            }
+            console.log(cTar,mTar,fTar);
+            var firstId="count"+(mTar*2-1);
+            var secondId="count"+(mTar*2);
+            var firstRes=document.getElementById(firstId).value;
+            var secondRes=document.getElementById(secondId).value;
+            if(firstRes>secondRes){
+                var winner=document.getElementById("mainteam"+(mTar*2-1)).innerHTML;
+                document.getElementById("mainteam"+(mTar+16)).innerHTML=winner;
+            } else if(firstRes<secondRes){
+                var winner=document.getElementById("mainteam"+(mTar*2)).innerHTML;
+                document.getElementById("mainteam"+(mTar+16)).innerHTML=winner;               
+            } else {
+                return;
+            }
+        }
+    }
+})
 
 
 function generateTables(nteam,numberTables,i){

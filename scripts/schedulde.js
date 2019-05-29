@@ -51,7 +51,7 @@ function addOption(location,ntext){
 items.sched.addEventListener("click",function(){
     var def=$('#champ-type').val();
     if(def=="Select option"){return;}
-    var ny=confirm("Are you shore?");  
+    var ny=confirm("Are you sure?");  
     if(ny==true){
             var type=document.getElementById("champ-type").value;
             var nteam=items.entry.rows.length;
@@ -642,6 +642,3 @@ function addMainElement(location,ti,i){
 }
 
 
-function logarithm(x,y){
-    return Math.log(y) / Math.log(x);
-}

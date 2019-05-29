@@ -58,3 +58,8 @@ function visibleElement(myClass){
     $(myClass).css('display','inline-block');
 }
 
+
+function logarithm(x,y){
+    return Math.log(y) / Math.log(x);
+}
+
