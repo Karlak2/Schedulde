@@ -1,0 +1,215 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+html{
+    background-color: #9acd324d;
+    height:100%;
+}
+
+
+.header {
+    width:100%;
+    height:50px;
+    background-color: black;
+    font-size: 2rem;
+    text-align: left;
+}
+.logo-con{
+    background-color: #5a5a5a;
+    width:230px;
+    padding:1px;
+}
+
+.index-icon {
+    text-decoration: none;
+    padding:6px 12px;
+    color:white;
+}
+
+.container{
+    max-width: 1600px;
+    width:100%;
+    height: 100%;
+    margin:0;
+    padding:0;
+}
+
+.container::after{
+    content: '';
+	clear: both;
+	display: table;
+}
+
+.menu {
+    width:230px;
+    background-color: darkcyan;
+    height:100%;
+    float:left;
+}
+
+.menu ul{
+    list-style: none;
+}
+
+.menu ul li a {
+    font-size: 1.7rem;
+    text-decoration: none;
+    color: white;
+    line-height: 2.5;
+    padding-left:20px;
+}
+
+
+.content{
+    width:auto;
+    margin-left:20%;
+    padding:20px;
+    height:100%;
+}
+
+.content table {
+    width: 75%;
+}
+
+.registration table{
+    margin-top:20px;
+    width:50%;
+}
+
+.registration{
+    text-align: left;
+}
+
+.entry{
+    background-color: #00d0ff;
+}
+
+.hidden{
+    display: none;
+}
+
+.ex1{
+    max-width: 10%;
+}
+
+.schedbutton {
+    margin-top:10px;
+}
+
+.selected{
+    background-color: #08b7b7;
+}
+
+.matchlist{
+    margin-top:100px;
+    padding-left:20px;
+}
+
+.content p:not(:last-child){
+    margin-bottom:0em;
+}
+
+
+.tabsched table{
+    width: 75%;
+    margin-top:0px;
+}    
+.tabcolor{
+    background-color: #01d3e6;
+    color:white;
+}
+
+.tabcolor2{
+    background-color: #0c2022;
+    color:white;
+}
+
+.ered td{
+    text-align: center;
+}
+
+.ered .input{
+    width:25%;
+}
+
+.right{
+    text-align: right;
+}
+
+.left{
+    text-align: left;
+}
+
+.matchButton{
+    background-color: chartreuse;
+    color: blue;
+    width:33px;
+    height:23px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.deleteButton{
+    background-color: red;
+    color:black;
+    width:33px;
+    height:23px;
+    border-radius: 6px;
+    font-size: 0.9rem;    
+}
+
+.result{
+    margin-top: 50px;
+    position: relative;
+    z-index:0;
+}
+
+.resgroup{
+    margin-top:10px;
+}
+table td {
+    text-align: center;
+}
+.group-head{
+    height: 30px;
+    margin-top: 25px;
+    width: 75%;
+    padding: 2px 8px;
+    background-color: #0c2022;
+    color:white;
+}
+
+.result-hidden{
+    margin:auto;
+    width:940px;
+
+    position: absolute;
+    left:360px;
+    top:50px;
+    background-color:whitesmoke;
+    border:2px solid black;
+    z-index:1;
+    border-radius: 5px;
+    padding:10px;
+}
+
+.players{
+    margin:0;
+    margin-bottom:20px;
+    width:500px;
+    height:30px;
+    display: inline-block;
+}
+
+.teamNumber{
+    margin-left:150px;
+    margin-top: 12px;
+}
+
+
+.control{
+    position: absolute;
+}
