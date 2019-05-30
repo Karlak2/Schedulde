@@ -1,4 +1,4 @@
-items.confirm.addEventListener("click",function(){
+items.confirm.addEventListener("click",function(){    
     schedulde(items);
     var nteam=items.entry.rows.length;
     nteam-=1;

@@ -63,3 +63,19 @@ function logarithm(x,y){
     return Math.log(y) / Math.log(x);
 }
 
+function writeTextFile() {
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("POST", "data.txt", true);
+    rawFile.overrideMimeType('text/xml; charset=iso-8859-2');
+    rawFile.onreadystatechange = function() {
+      if (rawFile.readyState == 4) {
+          var row1=items.entry.rows;
+        var getTable=[];
+        for(i=1;i<=row1.length;i++){
+            getTable.push(items.entry.rows.item(i));
+        }
+        rawFile.responseText=getTable;
+       }
+    }
+    rawFile.send();
+}

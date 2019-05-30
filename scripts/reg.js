@@ -44,9 +44,9 @@ items.entry.addEventListener("click",function(){
                     table.rows[j].cells[0].innerHTML=j;
                     var z="team"+j;
                     var z1="delButton"+j;
-                    document.getElementsByTagName("input")[j-1].setAttribute("placeholder",z);         
-                    document.getElementsByTagName("input")[j-1].setAttribute("id",z);
-                    document.getElementsByClassName("delButton")[j-1].setAttribute("id",z1);
+                    document.getElementsByTagName("input")[j].setAttribute("placeholder",z);         
+                    document.getElementsByTagName("input")[j].setAttribute("id",z);
+                    document.getElementsByClassName("delButton")[j].setAttribute("id",z1);
                 }
             break;
             }
