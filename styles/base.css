@@ -5,7 +5,7 @@
 }
 
 html{
-    background-color: #9acd324d;
+    background: linear-gradient(to left, #425b7c 0%, #6dabf1 100%);
     height:100%;
 }
 
@@ -43,6 +43,12 @@ html{
 	display: table;
 }
 
+p.text{
+    color: aliceblue;
+    margin-bottom: 12px;
+    font-size:1.2rem;
+}
+
 .menu {
     width:230px;
     background-color: darkcyan;
@@ -75,8 +81,8 @@ html{
 }
 
 .registration table{
-    margin-top:20px;
-    width:50%;
+    margin-top:70px;
+    width:95%;
 }
 
 .registration{
@@ -84,7 +90,7 @@ html{
 }
 
 .entry{
-    background-color: #00d0ff;
+    background-color: #0098ff;
 }
 
 .hidden{
@@ -95,8 +101,9 @@ html{
     max-width: 10%;
 }
 
-.schedbutton {
-    margin-top:10px;
+a.schedbutton {
+    margin-top: 1px;
+    margin-left: 12px;
 }
 
 .selected{
@@ -127,7 +134,7 @@ html{
     color:white;
 }
 
-.ered td{
+.ered tr{
     text-align: center;
 }
 
@@ -170,9 +177,11 @@ html{
 .resgroup{
     margin-top:10px;
 }
-table td {
+
+.content table td{
     text-align: center;
 }
+
 .group-head{
     height: 30px;
     margin-top: 25px;
@@ -206,10 +215,11 @@ table td {
 
 .teamNumber{
     margin-left:150px;
-    margin-top: 12px;
+    margin-top: 17px;
 }
 
 
 .control{
     position: absolute;
+    margin-left: -1.5rem;
 }

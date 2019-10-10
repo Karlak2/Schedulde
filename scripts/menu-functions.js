@@ -1,13 +1,13 @@
-function reg(items){
-    $(items.scheditem).slideToggle();
-    $(items.regitem).slideToggle();
+function reg(){   
+    showElement(items.regitem);
+    hideElement(items.scheditem);
     addColor(items.regback);
     removeColor(items.schedback);
 }
 
-function schedulde(items){
-    $(items.scheditem).slideToggle();
-    $(items.regitem).slideToggle();
+function schedulde(){
+    showElement(items.scheditem);
+    hideElement(items.regitem);
     removeColor(items.regback);
     addColor(items.schedback);
 }
@@ -28,6 +28,21 @@ function removeColor(thing){
     removeClass (thing, 'selected');
 }
 
+function lock(){
+    $(items.add1).hide();
+    $(items.close).hide();
+    visibleElement(items.confirm);
+    visibleElement(items.cancel2);
+}
+
+function cancel2(){    
+    reOpt();
+    $(items.selectTeam).hide();   
+    $(items.confirm).hide();   
+    $(items.cancel2).hide();   
+    visibleElement(items.add1);
+    visibleElement(items.close);
+}
 
 
 function addClass (element, classToAdd) {
@@ -46,4 +61,33 @@ function removeClass (element, classToRemove) {
 		classList.splice(index, 1);
 	}
     element.className = classList.join(' ');
+}
+
+function reOpt(){
+    var opt=items.champTypeList.length;
+    var round=items.roundNum.length;
+    if(opt>1){
+        for(let i=1;i<=opt;i++){
+            items.champTypeList.remove(1);
+        }
+    }
+    if(round>1){
+        for(let j=1;j<=round;j++){
+            items.roundNum.remove(1);
+        }
+    }
+}
+
+function visibleElement(myClass){
+    $(myClass).css('display','inline-block');
+}
+
+
+function logarithm(x,y){
+    return Math.log(y) / Math.log(x);
+}
+
+function toTheEnd(reference,location){
+    $(reference).clone().appendTo(location);
+    $(reference).remove();
 }

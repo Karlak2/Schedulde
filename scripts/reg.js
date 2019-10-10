@@ -54,18 +54,3 @@ items.entry.addEventListener("click",function(){
     }
 })
 
-function lock(){
-    $(items.add1).hide();
-    $(items.close).hide();
-    visibleElement(items.confirm);
-    visibleElement(items.cancel2);
-}
-
-function cancel2(){    
-    reOpt();
-    $(items.selectTeam).hide();   
-    $(items.confirm).hide();   
-    $(items.cancel2).hide();   
-    visibleElement(items.add1);
-    visibleElement(items.close);
-}

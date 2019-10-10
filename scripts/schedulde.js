@@ -1,58 +1,16 @@
-items.confirm.addEventListener("click",function(){    
-    schedulde(items);
-    var nteam=items.entry.rows.length;
-    nteam-=1;
-    var even;
-    if(nteam % 2 == 0){
-        even=true;
-    }
-    var maintable;
-    for(let i=3;i<=7;i++){
-        if(nteam % i  == 0){
-            let z=nteam/i;
-            if(z>1){
-                text3=`Group round ${z} x ${i}`;
-                addOption(items.champTypeList,text3);
-            }
-        }        
-    }
-    for(i=1;i<=10;i++){
-        var x=2**i;
-        if(nteam==x){
-            maintable=true;
-        }
-    }
-    var text1="Round robin";
-    var text2="Partial round robin";
-    var text4="Main table";
-    addOption(items.champTypeList,text1);
-    addOption(items.champTypeList,text2);
-    var roundNum=document.getElementById("round-num");
-    if(even){
-        for(i=2;i<=nteam-2;i++){
-            addOption(roundNum,i);
-        }
-    } else {
-        for(i=2;i<=nteam-2;i=i+2){
-            addOption(roundNum,i);
-        } 
-    }
-    if(maintable){
-        addOption(items.champTypeList,text4);
-    }
-});
+items.confirm.addEventListener("click",conf);
+items.sched.addEventListener("click",generateResults);
+items.sched.addEventListener("click",chooseSched);
+items.matchlist.addEventListener("click",yesMainTable);
+items.matchlist.addEventListener("click",notMainTable);    
 
-function addOption(location,ntext){
-    var option1=document.createElement("option");
-    var text=document.createTextNode(ntext);
-    option1.appendChild(text);
-    location.add(option1);
-}
-items.sched.addEventListener("click",function(){
+
+function chooseSched(){
     var def=$('#champ-type').val();
     if(def=="Select option"){return;}
     var ny=confirm("Are you sure?");  
     if(ny==true){
+            schedulde();
             var type=document.getElementById("champ-type").value;
             var nteam=items.entry.rows.length;
             nteam-=1;
@@ -63,9 +21,6 @@ items.sched.addEventListener("click",function(){
             }
             var nj=1;
             var nk=1;
-            $(items.sched).hide()
-            $(items.order).hide();
-            $(items.selectTeam).hide();   
             if(type=="Round robin"){
                 for(i=0;i<=nteam-1;i++){
                     teamlist.push(i+1);
@@ -131,8 +86,59 @@ items.sched.addEventListener("click",function(){
         } else {
             return;
         }
+}
 
-});
+function conf(){
+    var nteam=items.entry.rows.length;
+    nteam-=1;
+    var even;
+    if(nteam % 2 == 0){
+        even=true;
+    }
+    var maintable;
+    for(let i=3;i<=7;i++){
+        if(nteam % i  == 0){
+            let z=nteam/i;
+            if(z>1){
+                text3=`Group round ${z} x ${i}`;
+                addOption(items.champTypeList,text3);
+            }
+        }        
+    }
+    for(i=1;i<=10;i++){
+        var x=2**i;
+        if(nteam==x){
+            maintable=true;
+        }
+    }
+    var text1="Round robin";
+    var text2="Partial round robin";
+    var text4="Main table";
+    addOption(items.champTypeList,text1);
+    addOption(items.champTypeList,text2);
+    var roundNum=document.getElementById("round-num");
+    if(even){
+        for(i=2;i<=nteam-2;i++){
+            addOption(roundNum,i);
+        }
+    } else {
+        for(i=2;i<=nteam-2;i=i+2){
+            addOption(roundNum,i);
+        } 
+    }
+    if(maintable){
+        addOption(items.champTypeList,text4);
+    }
+
+}
+
+function addOption(location,ntext){
+    var option1=document.createElement("option");
+    var text=document.createTextNode(ntext);
+    option1.appendChild(text);
+    location.add(option1);
+}
+
 
 items.champTypeList.addEventListener("click",function(){
     let x=items.champTypeList.value;
@@ -142,7 +148,6 @@ items.champTypeList.addEventListener("click",function(){
         $(items.selectTeam).hide();   
     }
 })
-
 
 function group(nteam,ngroup,teamlist,even,nj,nk){
     var nteam2=nteam/ngroup;
@@ -186,7 +191,6 @@ function group(nteam,ngroup,teamlist,even,nj,nk){
         matchlist1.appendChild(grouphead);
         if(nteam2 % 2 == 0){
             even=true;
-
             robin(nteam2,nteam2-1,even,teams,nj,nk,roundz);
         } else {
             even=false;
@@ -199,6 +203,7 @@ function group(nteam,ngroup,teamlist,even,nj,nk){
 }
 
 function partial(nteam,nford,even,teamlist,nj,nk,roundz){
+    console.log(nteam,nford,even);
     var ntlist = [];
     var ntlist2= [];
     var nmatch=nteam*nford/2;
@@ -235,7 +240,7 @@ function partial(nteam,nford,even,teamlist,nj,nk,roundz){
                 var nt=0;
                 for(j=0;j<=nteam-2;j++){
                     for(k=0;k<=nteam-2;k++){
-                        if(ind[j][k] === ivec[i]){
+                        if(ind[j][k] == ivec[i]){
                             var x=(i-1)*(nteam-1)+nt;
                             if(j == k){
                                 ntlist[x] = [];
@@ -255,16 +260,18 @@ function partial(nteam,nford,even,teamlist,nj,nk,roundz){
         }
         console.log(ntlist);
         for (l=1;l<=x;l++){
-            var templist=[ntlist[l][0],ntlist[l][1]];
-            var [a,b]=templist;
-            [b,a]=[a,b];
+            var temp=ntlist[l][0];
+            ntlist[l][0]=ntlist[l][1];
+            ntlist[l][1]=temp;
             for(m=0;m<=(l-1);m++){
-                if((ntlist[l][0]===ntlist[m][0]) & (ntlist[l][1]===ntlist[m][1])){
+                if((ntlist[l][0]==ntlist[m][0]) & (ntlist[l][1]==ntlist[m][1])){
                     ntlist[l][0]=0;
                     ntlist[l][1]=0;
                 }
             }
-            [a,b]=[b,a];
+            var temp=ntlist[l][0];
+            ntlist[l][0]=ntlist[l][1];
+            ntlist[l][1]=temp;
         }
         for(l=0;l<=x;l++){
             if(ntlist[l][0]!=0){
@@ -311,9 +318,9 @@ function robin(nteam,nford,even,teamlist,nj,nk,roundz){
                 var nt=0;
                 for(j=0;j<=nford-1;j++){
                     for(k=0;k<=nford-1;k++){
-                        if(ind[j][k] === i){
+                        if(ind[j][k] == i){
                             var x=(i-1)*(nteam-1)+nt;
-                            if(j === k){
+                            if(j == k){
                                 ntlist[x] = [];
                                 ntlist[x][0]= teamlist[j];
                                 ntlist[x][1] = teamlist[nteam-1];
