@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Schedulde of play</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link rel="stylesheet" type="text/css" href="/styles/bulma.css">
+        <link rel="stylesheet" type="text/css" href="/styles/bulma.min.css"> -->
+        <link rel="stylesheet" type="text/css" href="/styles/base.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js" integrity="sha512-VZ6m0F78+yo3sbu48gElK4irv2dzPoep8oo9LEjxviigcnnnNvnTOJRSrIhuFk68FMLOpiNz+T77nNY89rnWDg==" crossorigin="anonymous"></script>
+        <script src="/scripts/jquery.js" defer></script>
+        <script src="/scripts/user.js" defer></script>
+        <!-- <script src="/scripts/menu.js" defer></script>
+        <script src="/scripts/reg.js" defer></script>
+        <script src="/scripts/results.js" defer></script>       
+        <script src="/scripts/schedulde.js" defer></script>
+        <script src="/scripts/functions.js" defer></script>
+        <script src="/scripts/menu-functions.js" defer></script>
+        <script src="/scripts/myrequests.js" defer></script>        -->
+    </head>
+    <body>
+        <div class="loginPart hidden">
+        
+        </div>    
+        <div class="loadback loading hidden">
+            <div class="loadtext">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <p>Connecting</br>database...</p>
+            </div>
+        </div>    
+        <div class="header">
+            <div class="logo-con">
+                <a href="http://localhost:3000/" class="index-icon">Schedule Core</a>
+            </div>
+            <div class="signIn loadsignin">
+                <div class="signinicon">
+                    <p class="index-icon userName"></p>
+                </div>
+            </div>    
+        </div>
+        <div class="container">
+            <div class="menu">
+                <ul class="menu-items">
+                    <li class="myEvents selected" >My events</li>
+                    <li class="manageEvents">Make events</li>
+                    <li class="account">Account</li>
+                </ul>
+            </div>
+            <div class="content">
+                
+            <!--     <div class="registration">
+                    <div class="columns">
+                        <div class="column">
+                            <div class="players">
+                                <div class="field">
+                                    <div class="control">
+                                        <p class="text">Number of players</p>
+                                        <input class="input is-info" id="teamNum" type="number" max="32" min="1">
+                                    </div>
+                                </div>
+                                <a class="button is-link teamNumber">Confirm</a>
+                            </div>
+                            <div class="allReg hidden">
+                                <table class="table is-narrow is-bordered entry">
+                                    <tr>
+                                        <th>Number</th>
+                                        <th>Players</th>
+                                    </tr>
+                                </table>
+                                <a class="button is-success add" onclick="add()">Add player</a>
+                                <a class="button is-link close" onclick="lock()">Close</a>
+                                <a class="button is-danger cancel2 hidden" onclick="cancel2()">Cancel</a>
+                                <a class="button is-success confirm hidden">Please confirm</a>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <p class="text">Scheme of schedule</p>
+                            <div class="order select is-info">
+                                <select id="champ-type">
+                                    <option>Select option</option>
+                                </select>
+                            </div>
+                            <div class="select-team select is-info hidden">
+                                <select id="round-num">
+                                    <option>Number of rounds</option>
+                                </select>
+                            </div>
+                            <a class="schedbutton button is-info">Confirm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="schedulde hidden">
+                    <div class="result">
+                        
+                    </div>        
+                    <div class="matchlist">
+                        
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </body>
+</html>

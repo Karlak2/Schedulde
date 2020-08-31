@@ -1,0 +1,14 @@
+<div class="loginsurface">
+    <h1>Account</h1>
+    <p id='accountmail'></p>
+    <p id='fullname'></p>
+    <button id="logoutbutton">Log Out</button><br/>
+    <script>
+        $(document).ready(()=>{
+            $('#logoutbutton').click(()=>{
+                document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                window.location.replace('http://localhost:3000/')
+            })  
+        })
+    </script>
+</div>

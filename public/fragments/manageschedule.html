@@ -1,0 +1,31 @@
+<div class="newevent">
+    <h1>Event informations</h1>
+    <div class='eventinfo'>
+        <input id="eventname" type="text" placeholder="Name of your event"><br/>
+        <input id='nteam' type="number" min="4" max="64" placeholder="Number of players or teams (max 64)"><br/>
+        <input id="tablenum" type="number" min="1" max="20" placeholder="Number of tables (max. 20)"><br/>
+        <select id="schedtype">
+            <option>Select schedule type</option>
+        </select><br/>
+    </div>
+    <button id="submitEvent">Create</button>
+</div>  
+<script>
+    $(document).ready(()=>{
+        $('#nteam').change(()=>{
+            if($('#nteam').val()>20){
+                $('#nteam').val(20)
+            } else if($('#nteam').val()<4){
+                $('#nteam').val(4)
+            } else {
+                return
+            }
+        })
+    })       
+    $(document).ready(()=>{
+        $('#submitEvent').click(()=>{
+            console.log($('#nteam').val())
+        })
+    })       
+
+</script>

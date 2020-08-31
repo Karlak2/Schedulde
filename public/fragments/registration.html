@@ -1,0 +1,45 @@
+<div class="loginsurface">
+    <h1>Registration</h1>
+    <input id="registeremail" class="inputFieldStyle" type="email" placeholder="Email"/><br/>
+    <input id="registerfirstname" class="inputFieldStyle" type="text" placeholder="First name"/><br/>
+    <input id="registerlastname" class="inputFieldStyle" type="text" placeholder="Last name"/><br/>
+    <input id="registername" class="inputFieldStyle" type="text" placeholder="Username"/><br/>
+    <input id="registerpw" class="inputFieldStyle" type="password" placeholder="Password"/><br/>
+    <button id="registerbutton">Register</button><br/>
+    <a id="notlogin">You have an account already? Log in</a>
+    <script>
+        var axios=window.axios
+        $(document).ready(()=>{
+            $('#notlogin').click(()=>{
+                axios.post('http://localhost:3000/data',{rb:'login'})
+                .then(res=>{
+                    $('.loginPart').children().remove()
+                    $('.loginPart').append(res.data).removeClass('hidden')
+                })
+            })  
+        })
+        $(document).ready(()=>{
+            $('#registerbutton').click(()=>{
+                axios.post('http://localhost:3000/registration',{
+                    email:$('#registeremail').val(),
+                    firstName:$('#registerfirstname').val(),
+                    lastName:$('#registerlastname').val(),
+                    name:$('#registername').val(),
+                    password:$('#registerpw').val()
+                })
+                .then(res=>{
+                    if(res.data.message==='ok'){
+                        axios.post('http://localhost:3000/data',{rb:'login'})
+                        .then(res2=>{
+                            $('.loginPart').children().remove()
+                            $('.loginPart').append(res2.data).removeClass('hidden')
+                        })
+                    } else if(res.data.message==='exist'){
+                        alert('User already exist')
+                        console.log('User already exist')
+                    }
+                })
+            })  
+        })
+    </script>
+</div>

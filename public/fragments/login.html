@@ -1,0 +1,39 @@
+<div class="loginsurface">
+    <h1>Login</h1>
+    <input id="loginemail" class="inputFieldStyle" type="email" placeholder="Email"/><br/>
+    <input id="loginpw" class="inputFieldStyle" type="password" placeholder="Password"/><br/>
+    <p id="message" style="color:yellow"></p>
+    <button id="loginbutton">Log In</button><br/>
+    <a id='notregistered'>You have'nt an account yet? Register</a>
+    <script>
+        $(document).ready(()=>{
+            $('#notregistered').click(()=>{
+                axios.post('http://localhost:3000/data',{rb:'reg'})
+                .then(res=>{
+                    $('.loginPart').children().remove()
+                    $('.loginPart').append(res.data).removeClass('hidden')
+                })
+            })  
+        })
+        $(document).ready(()=>{
+            $('#loginbutton').click(()=>{
+                axios.post('http://localhost:3000/login',{
+                    email:$('#loginemail').val(),
+                    password:$('#loginpw').val(),
+                })
+                .then(res=>{
+                    if(res.data.message==='ok'){
+                        console.log('You can login',res.data.token)
+                        $('#message').html('')
+                        document.cookie=`token=${res.data.token}`
+                        console.log(document.cookie)
+                        window.location.replace('http://localhost:3000/user/'+res.data.username)
+                    } else {
+                        $('#message').html(res.data.message)
+                        console.log('Email or password does not match')
+                    } 
+                })
+            })  
+        })
+    </script>
+</div>

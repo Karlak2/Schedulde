@@ -1,0 +1,640 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  background: -webkit-gradient(linear, right top, left top, from(#425b7c), to(#6dabf1));
+  background: linear-gradient(to left, #425b7c 0%, #6dabf1 100%);
+  height: 100%;
+}
+
+.header {
+  width: 100%;
+  height: 55px;
+  background-color: black;
+  font-size: 2rem;
+  text-align: left;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.header .logo-con {
+  background-color: #5a5a5a;
+  width: 230px;
+  padding: 1px;
+}
+
+.header .logo-con .index-icon {
+  text-decoration: none;
+  padding: 6px 12px;
+  color: white;
+}
+
+.header .signIn {
+  position: absolute;
+  right: 0;
+}
+
+.header .signIn .signinicon {
+  height: 50px;
+  background-color: #3B3B98;
+  margin: 2px;
+  padding: 0 10px;
+}
+
+.header .signIn .signinicon p {
+  margin: 0;
+  padding: 4px;
+  color: white;
+}
+
+.header .signIn .signinicon:hover {
+  background-color: #5454db;
+  cursor: pointer;
+}
+
+.loginsurface {
+  text-align: center;
+  background-color: #686de0;
+  position: absolute;
+  right: 70px;
+  top: 54px;
+  padding: 30px 50px;
+  z-index: 2;
+  color: white;
+}
+
+.loginsurface .inputFieldStyle {
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 10px;
+  background: none;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 5px;
+  color: black;
+  outline: none;
+}
+
+.loginsurface .inputFieldStyle:focus {
+  padding: 10px 5px;
+  margin: 5px;
+  border: 1px solid white;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  color: white;
+}
+
+.loginsurface .inputFieldStyle::-webkit-input-placeholder {
+  color: white;
+}
+
+.loginsurface .inputFieldStyle:-ms-input-placeholder {
+  color: white;
+}
+
+.loginsurface .inputFieldStyle::-ms-input-placeholder {
+  color: white;
+}
+
+.loginsurface .inputFieldStyle::placeholder {
+  color: white;
+}
+
+.loginsurface h1 {
+  text-align: center;
+}
+
+.loginsurface button {
+  font-size: 1.2rem;
+  margin: 20px;
+  background: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: 1px solid black;
+  color: white;
+  outline: none;
+}
+
+.loginsurface button:hover {
+  border: 1px solid white;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  padding: 10px 40px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.loginsurface a {
+  font-size: 1.1rem;
+}
+
+.loginsurface a:hover {
+  color: yellow;
+  cursor: pointer;
+}
+
+.loginsurface p {
+  margin: 10px 20px;
+}
+
+.loadback {
+  background: #6a89cc;
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  padding: 30px;
+  overflow: hidden;
+  text-align: center;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.loadback p {
+  text-transform: uppercase;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.loadtext span:nth-child(1) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: -webkit-gradient(linear, left top, right top, from(#a4b0be), to(white));
+  background: linear-gradient(to right, #a4b0be, white);
+  -webkit-animation: animate1 1s linear infinite;
+          animation: animate1 1s linear infinite;
+}
+
+@-webkit-keyframes animate1 {
+  0% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+  100% {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+}
+
+@keyframes animate1 {
+  0% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+  100% {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+}
+
+.loadtext span:nth-child(2) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, from(#a4b0be), to(white));
+  background: linear-gradient(to bottom, #a4b0be, white);
+  -webkit-animation: animate2 1s linear infinite;
+          animation: animate2 1s linear infinite;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+
+@-webkit-keyframes animate2 {
+  0% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  100% {
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+  }
+}
+
+@keyframes animate2 {
+  0% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  100% {
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+  }
+}
+
+.loadtext span:nth-child(3) {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: -webkit-gradient(linear, right top, left top, from(#a4b0be), to(white));
+  background: linear-gradient(to left, #a4b0be, white);
+  -webkit-animation: animate3 1s linear infinite;
+          animation: animate3 1s linear infinite;
+}
+
+@-webkit-keyframes animate3 {
+  0% {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+  100% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+}
+
+@keyframes animate3 {
+  0% {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+  100% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+}
+
+.loadtext span:nth-child(4) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: -webkit-gradient(linear, left bottom, left top, from(#a4b0be), to(white));
+  background: linear-gradient(to top, #a4b0be, white);
+  -webkit-animation: animate4 1s linear infinite;
+          animation: animate4 1s linear infinite;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+
+@-webkit-keyframes animate4 {
+  0% {
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+  }
+  100% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+}
+
+@keyframes animate4 {
+  0% {
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+  }
+  100% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+}
+
+.accountStyle p {
+  color: white;
+}
+
+.accountStyle .inputfield {
+  color: white;
+  background: none;
+  font-size: 1.2rem;
+  border: 1px solid black;
+  border-radius: 20px;
+  margin: 20px;
+  padding: 10px;
+  text-align: center;
+  outline: none;
+}
+
+.accountStyle .inputfield::-webkit-input-placeholder {
+  color: whitesmoke;
+}
+
+.accountStyle .inputfield:-ms-input-placeholder {
+  color: whitesmoke;
+}
+
+.accountStyle .inputfield::-ms-input-placeholder {
+  color: whitesmoke;
+}
+
+.accountStyle .inputfield::placeholder {
+  color: whitesmoke;
+}
+
+.accountStyle .passwords input {
+  color: black;
+  background: #ffffffa6;
+  font-size: 1.2rem;
+  border: 1px solid black;
+  border-radius: 20px;
+  margin: 20px;
+  padding: 10px;
+  text-align: center;
+  outline: none;
+}
+
+.accountStyle .checkpw {
+  margin-top: 30px;
+}
+
+.accountStyle .checkpw p {
+  margin-top: 5px;
+  font-size: 1.2rem;
+}
+
+.accountStyle .checkpw input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+  margin: 5px 15px;
+}
+
+.accountStyle .passwords input::-webkit-input-placeholder {
+  color: black;
+}
+
+.accountStyle .passwords input:-ms-input-placeholder {
+  color: black;
+}
+
+.accountStyle .passwords input::-ms-input-placeholder {
+  color: black;
+}
+
+.accountStyle .passwords input::placeholder {
+  color: black;
+}
+
+.accountStyle .buttons {
+  margin: 20px;
+  text-align: center;
+  width: 48%;
+}
+
+.accountStyle .buttons button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background: none;
+  color: white;
+  margin: 0 10px;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.accountStyle .buttons .modifydata:hover {
+  background-color: #4caf50;
+  border: 1px solid #4caf50;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+  cursor: pointer;
+  outline: none;
+}
+
+.accountStyle .buttons .cancelModify:hover {
+  background-color: red;
+  border: 1px solid red;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+  cursor: pointer;
+  outline: none;
+}
+
+.accountStyle .buttons .savedata:hover {
+  background-color: #4caf50;
+  border: 1px solid #4caf50;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+  cursor: pointer;
+  outline: none;
+}
+
+.container {
+  max-width: 1600px;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.container::after {
+  content: '';
+  clear: both;
+  display: table;
+}
+
+p.text {
+  color: aliceblue;
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+}
+
+.menu {
+  width: 230px;
+  background-color: darkcyan;
+  height: 100%;
+  float: left;
+}
+
+.menu ul {
+  list-style: none;
+}
+
+.menu ul li {
+  font-size: 1.7rem;
+  text-decoration: none;
+  color: white;
+  line-height: 2.5;
+  padding-left: 20px;
+  cursor: pointer;
+}
+
+.content {
+  width: auto;
+  margin-left: 20%;
+  padding: 20px;
+  height: 100%;
+}
+
+.content table {
+  width: 75%;
+}
+
+.entry {
+  background-color: #0098ff;
+}
+
+.hidden {
+  display: none;
+}
+
+.ex1 {
+  max-width: 10%;
+}
+
+a.schedbutton {
+  margin-top: 1px;
+  margin-left: 12px;
+}
+
+.selected {
+  background-color: #08b7b7;
+}
+
+.matchlist {
+  margin-top: 100px;
+  padding-left: 20px;
+}
+
+.content p:not(:last-child) {
+  margin-bottom: 0em;
+}
+
+.tabsched table {
+  width: 75%;
+  margin-top: 0px;
+}
+
+.tabcolor {
+  background-color: #01d3e6;
+  color: white;
+}
+
+.tabcolor2 {
+  background-color: #0c2022;
+  color: white;
+}
+
+.ered tr {
+  text-align: center;
+}
+
+.ered .input {
+  width: 25%;
+}
+
+.right {
+  text-align: right;
+}
+
+.left {
+  text-align: left;
+}
+
+.matchButton {
+  background-color: chartreuse;
+  color: blue;
+  width: 33px;
+  height: 23px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.deleteButton {
+  background-color: red;
+  color: black;
+  width: 33px;
+  height: 23px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.result {
+  margin-top: 50px;
+  position: relative;
+  z-index: 0;
+}
+
+.resgroup {
+  margin-top: 10px;
+}
+
+.content table td {
+  text-align: center;
+}
+
+.group-head {
+  height: 30px;
+  margin-top: 25px;
+  width: 75%;
+  padding: 2px 8px;
+  background-color: #0c2022;
+  color: white;
+}
+
+.result-hidden {
+  margin: auto;
+  width: 940px;
+  position: absolute;
+  left: 360px;
+  top: 50px;
+  background-color: whitesmoke;
+  border: 2px solid black;
+  z-index: 1;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.players {
+  margin: 0;
+  margin-bottom: 20px;
+  width: 500px;
+  height: 30px;
+  display: inline-block;
+}
+
+.teamNumber {
+  margin-left: 150px;
+  margin-top: 17px;
+}
+
+.control {
+  position: absolute;
+  margin-left: -1.5rem;
+}
+
+.newevent {
+  font-size: 1.2rem;
+}
+
+.newevent h1 {
+  color: white;
+  margin: 10px 0;
+}
+
+.newevent input {
+  margin: 10px 0;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 15px;
+  width: 300px;
+  outline: none;
+}
+
+.newevent input:focus {
+  background-color: #ecf0f1;
+}
+
+.newevent select {
+  margin: 10px 0;
+  outline: none;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid black;
+  width: 300px;
+}
+/*# sourceMappingURL=base.css.map */

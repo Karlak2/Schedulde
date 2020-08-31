@@ -1,0 +1,150 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: block;
+  background: -webkit-gradient(linear, right top, left top, from(#425b7c), to(#6dabf1));
+  background: linear-gradient(to left, #425b7c 0%, #6dabf1 100%);
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.header {
+  width: 100%;
+  height: 55px;
+  background-color: black;
+  font-size: 2rem;
+  text-align: left;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.header .logo-con {
+  height: 45px;
+  background-color: #3B3B98;
+  width: 230px;
+  padding: 5px;
+}
+
+.header .logo-con .index-icon {
+  margin: 5px;
+  text-decoration: none;
+  color: white;
+}
+
+.header .logo-con:hover {
+  background-color: #5454db;
+  cursor: pointer;
+}
+
+.header .signIn {
+  position: absolute;
+  right: 0;
+}
+
+.header .signIn .signinicon {
+  height: 50px;
+  background-color: #3B3B98;
+  margin: 2px;
+}
+
+.header .signIn .signinicon p {
+  margin: 0;
+  padding: 4px;
+  color: white;
+}
+
+.header .signIn .signinicon:hover {
+  background-color: #5454db;
+  cursor: pointer;
+}
+
+.loginsurface {
+  text-align: center;
+  background-color: #686de0;
+  position: absolute;
+  right: 70px;
+  top: 54px;
+  padding: 30px 50px;
+  z-index: 2;
+  color: white;
+}
+
+.loginsurface .inputFieldStyle {
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 10px;
+  background: none;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 5px;
+  color: black;
+  outline: none;
+}
+
+.loginsurface .inputFieldStyle:focus {
+  padding: 10px 5px;
+  margin: 5px;
+  border: 1px solid white;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  color: white;
+}
+
+.loginsurface .inputFieldStyle::-webkit-input-placeholder {
+  color: white;
+}
+
+.loginsurface .inputFieldStyle:-ms-input-placeholder {
+  color: white;
+}
+
+.loginsurface .inputFieldStyle::-ms-input-placeholder {
+  color: white;
+}
+
+.loginsurface .inputFieldStyle::placeholder {
+  color: white;
+}
+
+.loginsurface h1 {
+  text-align: center;
+}
+
+.loginsurface button {
+  font-size: 1.2rem;
+  margin: 20px;
+  background: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: 1px solid black;
+  color: white;
+  outline: none;
+}
+
+.loginsurface button:hover {
+  border: 1px solid white;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  padding: 10px 40px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.loginsurface a {
+  font-size: 1.1rem;
+}
+
+.loginsurface a:hover {
+  color: yellow;
+  cursor: pointer;
+}
+/*# sourceMappingURL=index.css.map */

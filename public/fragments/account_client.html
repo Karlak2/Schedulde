@@ -1,0 +1,87 @@
+<div class="accountStyle">
+    <div style="display: flex;" class="names">
+        <input class="inputfield" id="lastName" readonly="true"></input>
+        <input class="inputfield" id="firstName" readonly="true"></input>
+    </div>
+    <div style="display: flex;" class="accountDatas">
+        <input class=inputfield id="email" readonly="true"></input>
+        <input class=inputfield id="username" readonly="true"></input>
+    </div>
+    <div style="display: none;" class="passwords">
+        <input class=inputfield type="password" id="pw" readonly="true" placeholder="New Password"></input>
+        <input class=inputfield type="password" id="pwagain" readonly="true" placeholder="New Password"></input>
+        <div style="display:flex;" class="checkpw">
+            <input type="checkbox" id="checkPasswords">
+            <p>Check passwords</p> 
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="buttonstyle modifydata">Modify</button>
+        <button class="buttonstyle savedata hidden">Save</button>
+        <button class="buttonstyle cancelModify hidden">Cancel</button>
+    </div>
+</div>
+<script>
+    $(document).ready(()=>{
+        axios.get('http://localhost:3000/data/'+$('.userName').text())
+        .then(res=>{
+            $('#firstName').val(res.data.firstName)
+            $('#lastName').val(res.data.lastName)
+            $('#email').val(res.data.email)
+            $('#username').val(res.data.username)
+            $('.loading').addClass('hidden')
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    })
+    $(document).ready(()=>{
+        $('.modifydata').click(()=>{
+            $('.passwords').css('display','flex')
+            $('#firstName').attr("readonly",false).css({'background':'#ffffffa6','color':'black'})
+            $('#lastName').attr("readonly",false).css({'background':'#ffffffa6','color':'black'})
+            $('#email').attr("readonly",false).css({'background':'#ffffffa6','color':'black'})
+            $('#username').attr("readonly",false).css({'background':'#ffffffa6','color':'black'})
+            $('#pw').attr("readonly",false).css({'background':'#ffffffa6','color':'black'})
+            $('#pwagain').attr("readonly",false).css({'background':'#ffffffa6','color':'black'})
+            $(".modifydata").addClass("hidden");
+            $(".savedata").removeClass("hidden");
+            $(".cancelModify").removeClass("hidden");
+        })
+        $('.cancelModify').click(()=>{
+            $('.passwords').css('display','none')
+            $('#firstName').attr("readonly",true).css({'background':'none','color':'white'})
+            $('#lastName').attr("readonly",true).css({'background':'none','color':'white'})
+            $('#email').attr("readonly",true).css({'background':'none','color':'white'})
+            $('#username').attr("readonly",true).css({'background':'none','color':'white'})
+            $('#pw').attr("readonly",true).css({'background':'none','color':'white'})
+            $('#pwagain').attr("readonly",true).css({'background':'none','color':'white'})
+            $(".modifydata").removeClass("hidden");
+            $(".savedata").addClass("hidden");
+            $(".cancelModify").addClass("hidden");
+        })
+        $('.savedata').click(()=>{
+            axios.put('http://localhost:3000/registration/'+$('.userName').text(),
+            {
+                lastName:$('#lastName').val(),
+                firstName:$('#firstName').val(),
+                email:$('#email').val(),
+                username:$('#username').val(),
+                pw:$('#pw').val(),
+                pwagain:$('#pwagain').val(),
+            })
+            .then(res=>{
+                window.location.replace('http://localhost:3000/user/'+res.data.username)
+            })
+        })
+        $('#checkPasswords').click(()=>{
+            if($('#checkPasswords').is(':checked')){
+                $('#pw').attr("type","text")
+                $('#pwagain').attr("type","text")
+            } else {
+                $('#pw').attr("type","password")
+                $('#pwagain').attr("type","password")
+            }
+        })
+    })
+</script>
