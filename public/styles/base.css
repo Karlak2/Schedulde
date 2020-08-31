@@ -623,10 +623,11 @@ a.schedbutton {
   border-radius: 15px;
   width: 300px;
   outline: none;
+  background-color: #ecf0f1;
 }
 
 .newevent input:focus {
-  background-color: #ecf0f1;
+  background-color: white;
 }
 
 .newevent select {

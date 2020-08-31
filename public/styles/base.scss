@@ -505,9 +505,10 @@ a.schedbutton {
         border-radius:15px;
         width:300px;
         outline:none;
+        background-color: #ecf0f1;
     }
     input:focus{
-        background-color: #ecf0f1;
+        background-color: white;
     }
     select{
         margin:10px 0;

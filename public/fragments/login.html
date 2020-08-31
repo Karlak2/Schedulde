@@ -17,23 +17,34 @@
         })
         $(document).ready(()=>{
             $('#loginbutton').click(()=>{
-                axios.post('http://localhost:3000/login',{
-                    email:$('#loginemail').val(),
-                    password:$('#loginpw').val(),
-                })
-                .then(res=>{
-                    if(res.data.message==='ok'){
-                        console.log('You can login',res.data.token)
-                        $('#message').html('')
-                        document.cookie=`token=${res.data.token}`
-                        console.log(document.cookie)
-                        window.location.replace('http://localhost:3000/user/'+res.data.username)
-                    } else {
-                        $('#message').html(res.data.message)
-                        console.log('Email or password does not match')
-                    } 
-                })
+                logIn()
             })  
         })
+        $(document).on('keypress',(event)=>{
+            if(event.which===13){
+                logIn()
+            }
+        })
+
+        logIn=()=>{
+            axios.post('http://localhost:3000/login',{
+                email:$('#loginemail').val(),
+                password:$('#loginpw').val(),
+            })
+            .then(res=>{
+                if(res.data.message==='ok'){
+                    console.log('You can login',res.data.token)
+                    $('#message').html('')
+                    document.cookie=`token=${res.data.token}`
+                    console.log(document.cookie)
+                    window.location.replace('http://localhost:3000/user/'+res.data.username)
+                } else {
+                    $('#message').html(res.data.message)
+                    console.log('Email or password does not match')
+                } 
+            })
+        }    
     </script>
 </div>
+
+
