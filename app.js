@@ -38,7 +38,7 @@ app.get('/unlock',async(req,res)=>{
         const user=await User.findById(jwt.verify(token,process.env.TOKEN_SECRET)._id)
         res.json({user:user.username})
     } catch (error) {
-        console.log(error)
+        res.status(401).json({message:'User not found'})
     }
 })
 

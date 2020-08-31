@@ -1,31 +1,61 @@
 <div class="newevent">
-    <h1>Event informations</h1>
-    <div class='eventinfo'>
-        <input id="eventname" type="text" placeholder="Name of your event"><br/>
-        <input id='nteam' type="number" min="4" max="64" placeholder="Number of players or teams (max 64)"><br/>
-        <input id="tablenum" type="number" min="1" max="20" placeholder="Number of tables (max. 20)"><br/>
-        <select id="schedtype">
-            <option>Select schedule type</option>
-        </select><br/>
+    <div class="eventbox" style="display: flex;">
+        <div class='eventinfo'>
+            <h1>Event informations</h1>
+            <input id="eventname" type="text" placeholder="Name of your event"><br/>
+            <input id="tablenum" type="number" min="1" placeholder="Number of tables"><br/>
+            <select id="schedtype">
+                <option>Select schedule type</option>
+            </select><br/>
+            <button class="addbutton" id="submitEvent">Create</button>
+        </div>
+        <div class="participants">
+            <h1>Participants</h1>
+            <div style="display: flex;">
+                <div>
+                    <div class="listofp">
+                    </div>
+                    <button class="addbutton addplayer">Add</button>
+                    <button class="removebutton">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <button id="submitEvent">Create</button>
 </div>  
 <script>
-    $(document).ready(()=>{
-        $('#nteam').change(()=>{
-            if($('#nteam').val()>20){
-                $('#nteam').val(20)
-            } else if($('#nteam').val()<4){
-                $('#nteam').val(4)
-            } else {
-                return
-            }
-        })
-    })       
     $(document).ready(()=>{
         $('#submitEvent').click(()=>{
             console.log($('#nteam').val())
         })
     })       
-
+    $(document).ready(()=>{
+        $('.addplayer').click(()=>{
+            let len=$('.listofp').children().length
+            $('.listofp').append(
+                `<div class="plstyle player${len+1}">
+                    <span class=ssz >${len+1}.</span>
+                    <input type="text" class="playername${len+1}" placeholder="Team${len+1}">
+                    <button class="removeplayer removebutton${len+1}">X</button>
+                </div>`
+            )
+        })
+    })
+    // $(document).ready(()=>{
+    //     $('.listofp').click((event)=>{
+    //         if(event.target.classList[0]==="removeplayer"){
+    //             let tar=event.target.classList[1].split('removebutton')[1]
+    //             $(`.player${tar}`).remove()
+    //             $('.listofp').children().map((ind,part)=>{
+    //                 let name=$(part)[0].className
+    //                 $(part).removeClass(name).addClass(`player${ind+1}`)
+    //                 $($(part).children()[0]).html(`${ind+1}.`)
+    //                 let a=$($(part).children()[1])[0].className
+    //                 console.log(a)
+    //                 $($(part).children()[1]).removeClass(a).addClass(`playername${ind+1}`)
+    //                 let b=$($(part).children()[1])[0].className
+    //                 console.log(b)
+    //             })
+    //         }
+    //     })
+    // })
 </script>

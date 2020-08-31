@@ -518,4 +518,51 @@ a.schedbutton {
         border: 1px solid black;
         width:300px;
     }
+    .participants{
+        position: relative;
+        left: 500px;
+        .plstyle{
+            display: flex;
+            input{
+                margin:5px;
+            }
+        }
+        .removeplayer{
+            padding:5px;
+            font-size:1rem;
+            background:red;
+            color:white;
+            margin:15px;
+            border:1px solid black;
+            border-radius:2px;
+            height:30px;
+        }
+        .ssz{
+            color:white;
+            font-size:1.5rem;
+            margin:15px;
+        }
+    }
+}
+button{
+    padding:10px 20px;
+    font-size:1.2rem;
+    background:none;
+    color:white;
+    margin:0 10px;
+    border:1px solid black;
+    border-radius:20px;
+    outline: none;
+}
+.addbutton:hover{
+    background-color:#4caf50;
+    border:1px solid #4caf50;
+    transition: 0.25s;
+    cursor: pointer;
+}
+.removebutton:hover{
+    background-color:red;
+    border:1px solid red;
+    transition: 0.25s;
+    cursor: pointer;
 }

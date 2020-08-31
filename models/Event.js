@@ -2,6 +2,10 @@ const mongoose=require('mongoose');
 
 
 const baseSchema=mongoose.Schema({
+    nameOfEvent:{
+        type:String,
+        required:true
+    },
     teamnumber: {
         type:Number,
         required:true
@@ -17,4 +21,4 @@ const baseSchema=mongoose.Schema({
 
 });
 
-module.exports = mongoose.model('basics' , baseSchema);
+module.exports = mongoose.model('events' , baseSchema);
